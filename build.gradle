@@ -13,9 +13,11 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
-jar {
-	baseName = 'Application'
+
+war {
+	baseName = 'taxiplus'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
