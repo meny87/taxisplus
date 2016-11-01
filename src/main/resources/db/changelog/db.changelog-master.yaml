@@ -27,4 +27,22 @@ databaseChangeLog:
                   name: role
                   type: varchar(30)
                   constraints:
-                    nullable: false
+                    nullable: false                 
+  - changeSet:
+      id: 2
+      author: magg
+      changes:
+        - insert:
+           tableName: users
+           columns:
+              - column: 
+                  name: email
+                  value: demo@localhost
+              - column: 
+                  name: password_hash
+                  value: $2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C
+              - column: 
+                  name: role
+                  value: ADMINCAPTURER
+              
+           
