@@ -18,14 +18,14 @@ import javax.validation.Valid;
 import java.util.NoSuchElementException;
 
 @Controller
-public class UserController {
+public class UsuarioController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioController.class);
     private final UserService userService;
     private final UserCreateFormValidator userCreateFormValidator;
 
     @Autowired
-    public UserController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
+    public UsuarioController(UserService userService, UserCreateFormValidator userCreateFormValidator) {
         this.userService = userService;
         this.userCreateFormValidator = userCreateFormValidator;
     }
@@ -36,22 +36,22 @@ public class UserController {
     }
 
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
-    @RequestMapping("/user/{id}")
+    @RequestMapping("/usuario/{id}")
     public ModelAndView getUserPage(@PathVariable Long id) {
         LOGGER.debug("Getting user page for user={}", id);
-        return new ModelAndView("user", "user", userService.getUserById(id)
-                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
+        return new ModelAndView("usuario", "usuario", userService.getUserById(id)
+                .orElseThrow(() -> new NoSuchElementException(String.format("Usuario=%s not found", id))));
     }
 
     @PreAuthorize("hasAuthority('ADMINCAPTURER')")
-    @RequestMapping(value = "/user/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuario/create", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage() {
         LOGGER.debug("Getting user create form");
         return new ModelAndView("user_create", "form", new UserCreateForm());
     }
 
     @PreAuthorize("hasAuthority('ADMINCAPTURER')")
-    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/usuario/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
         LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -68,7 +68,7 @@ public class UserController {
             return "user_create";
         }
         // ok, redirect
-        return "redirect:/users";
+        return "redirect:/usuarios";
     }
 
 }

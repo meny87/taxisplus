@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UsersController {
+public class UsuariosController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UsersController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsuariosController.class);
     
     @Autowired
     private  UserService userService;
 
-    @RequestMapping("/users")
+    @RequestMapping("/usuarios")
     public ModelAndView getUsersPage() {
         LOGGER.debug("Getting users page");
-        return new ModelAndView("users", "users", userService.getAllUsers());
+        return new ModelAndView("usuarios", "usuarios", userService.getAllUsers());
     }
 
 

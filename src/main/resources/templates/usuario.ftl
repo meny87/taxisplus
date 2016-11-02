@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="user" type="com.menulabs.taxiplus.domain.User" -->
+<#-- @ftlvariable name="user" type="com.menulabs.taxiplus.domain.Usuario" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +14,8 @@
 
 <h1>User details</h1>
 
-<p>E-mail: ${user.email}</p>
+<p>E-mail: ${usuario.email}</p>
 
-<p>Role: ${user.role}</p>
+<p>Role: ${usuario.role}</p>
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.menulabs.taxisplus.domain.dto;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.menulabs.taxisplus.domain.Role;
-import com.menulabs.taxisplus.domain.User;
+import com.menulabs.taxisplus.domain.Usuario;
 
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
@@ -12,29 +12,29 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private User user;
+	private Usuario usuario;
 
-    public CurrentUser(User user) {
-        super(user.getEmail(), user.getPasswordHash(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
-        this.user = user;
+    public CurrentUser(Usuario usuario) {
+        super(usuario.getEmail(), usuario.getPasswordHash(), AuthorityUtils.createAuthorityList(usuario.getRole().toString()));
+        this.usuario = usuario;
     }
 
-    public User getUser() {
-        return user;
+    public Usuario getUser() {
+        return usuario;
     }
 
     public Long getId() {
-        return user.getId();
+        return usuario.getId();
     }
 
     public Role getRole() {
-        return user.getRole();
+        return usuario.getRole();
     }
 
     @Override
     public String toString() {
         return "CurrentUser{" +
-                "user=" + user +
+                "usuario=" + usuario +
                 "} " + super.toString();
     }
 }

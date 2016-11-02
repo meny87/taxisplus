@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.menulabs.taxisplus.domain.User;
+import com.menulabs.taxisplus.domain.Usuario;
 import com.menulabs.taxisplus.domain.dto.CurrentUser;
 
 @Service
@@ -24,9 +24,9 @@ public class CurrentUserDetailsService implements UserDetailsService {
     @Override
     public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
         LOGGER.debug("Authenticating user with email={}", email.replaceFirst("@.*", "@***"));
-        User user = userService.getUserByEmail(email)
+        Usuario usuario = userService.getUserByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
-        return new CurrentUser(user);
+        return new CurrentUser(usuario);
     }
 
 }

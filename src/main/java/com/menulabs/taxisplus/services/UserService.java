@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.menulabs.taxisplus.domain.User;
+import com.menulabs.taxisplus.domain.Usuario;
 import com.menulabs.taxisplus.domain.dto.UserCreateForm;
-import com.menulabs.taxisplus.repositories.UserRepository;
+import com.menulabs.taxisplus.repositories.UsuarioRepository;
 
 @Service
 public class UserService {
@@ -19,30 +19,30 @@ public class UserService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
-	private UserRepository userRepository;
+	private UsuarioRepository userRepository;
 
 
-	public Optional<User> getUserById(long id) {
+	public Optional<Usuario> getUserById(long id) {
 		LOGGER.debug("Getting user={}", id);
 		return Optional.ofNullable(userRepository.findOne(id));
 	}
 
-	public Optional<User> getUserByEmail(String email) {
+	public Optional<Usuario> getUserByEmail(String email) {
 		LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
 		return userRepository.findOneByEmail(email);
 	}
 
-	public Collection<User> getAllUsers() {
+	public Collection<Usuario> getAllUsers() {
 		LOGGER.debug("Getting all users");
 		return userRepository.findAll(new Sort("email"));
 	}
 
-	public User create(UserCreateForm form) {
-		User user = new User();
-		user.setEmail(form.getEmail());
-		user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
-		user.setRole(form.getRole());
-		return userRepository.save(user);
+	public Usuario create(UserCreateForm form) {
+		Usuario Usuario = new Usuario();
+		Usuario.setEmail(form.getEmail());
+		Usuario.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
+		Usuario.setRole(form.getRole());
+		return userRepository.save(Usuario);
 	}
 
 }

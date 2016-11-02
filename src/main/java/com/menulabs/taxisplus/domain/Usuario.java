@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "usuarios")
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +62,7 @@ public class User {
 	
 	@Override
     public String toString() {
-        return "User{" +
+        return "Usuario{" +
                 "id=" + id +
                 ", email='" + email.replaceFirst("@.*", "@***") +
                 ", passwordHash='" + passwordHash.substring(0, 10) +
