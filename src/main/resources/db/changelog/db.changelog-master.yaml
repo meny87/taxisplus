@@ -44,5 +44,60 @@ databaseChangeLog:
               - column: 
                   name: role
                   value: ADMINCAPTURER
+  - changeSet: 
+    id: 3
+    author: magg
+    changes:
+     - createTable:
+            tableName: operadores
+            columns:
+              - column:
+                  name: Tel_movil
+                  type: varchar(20)
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: Placas_ID
+                  type: varchar(10)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: Nombre
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Apellido_paterno
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Apellido_materno
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Calle_numero
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Colonia
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Tel_particular
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CP
+                  type: int
+                  constraints:
+                    nullable: false
+                    
               
            
