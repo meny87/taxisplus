@@ -44,5 +44,17 @@ public class UserService {
 		Usuario.setRole(form.getRole());
 		return userRepository.save(Usuario);
 	}
+	
+	public Usuario update(UserCreateForm form) {
+		Usuario Usuario = userRepository.findOne(form.getId());
+		Usuario.setEmail(form.getEmail());
+		Usuario.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
+		Usuario.setRole(form.getRole());
+		return userRepository.save(Usuario);
+	}
+	
+	public void delete (Long id){
+		userRepository.delete(id);
+	}
 
 }

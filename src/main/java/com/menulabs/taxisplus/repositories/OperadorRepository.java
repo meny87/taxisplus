@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.menulabs.taxisplus.domain.Operador;
 
-public interface OperadorRepository extends JpaRepository<Operador, String> {
+public interface OperadorRepository extends JpaRepository<Operador, Long> {
+	
+	 Operador findByTelmovil(String tel);
 
 }

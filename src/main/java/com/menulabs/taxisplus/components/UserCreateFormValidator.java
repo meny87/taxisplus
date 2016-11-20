@@ -28,7 +28,10 @@ public class UserCreateFormValidator implements Validator {
         LOGGER.debug("Validating {}", target);
         UserCreateForm form = (UserCreateForm) target;
         validatePasswords(errors, form);
-        validateEmail(errors, form);
+        if (form.getId() == 0){
+        	 validateEmail(errors, form);
+        }
+       
     }
 
     private void validatePasswords(Errors errors, UserCreateForm form) {
@@ -38,7 +41,7 @@ public class UserCreateFormValidator implements Validator {
     }
 
     private void validateEmail(Errors errors, UserCreateForm form) {
-        if (userService.getUserByEmail(form.getEmail()).isPresent()) {
+        if (userService.getUserByEmail(form.getEmail()).isPresent() ) {
             errors.reject("email.exists", "User with this email already exists");
         }
 }

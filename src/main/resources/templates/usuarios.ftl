@@ -20,6 +20,9 @@
     <tr>
         <th>E-mail</th>
         <th>Role</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        
     </tr>
     </thead>
     <tbody>
@@ -27,6 +30,11 @@
     <tr>
         <td><a href="/usuario/${usuario.id}">${usuario.email}</a></td>
         <td>${usuario.role}</td>
+        
+        <td><a href="/usuario/${usuario.id}/delete">Delete</a></td>
+        <td><a href="/usuario/${usuario.id}/edit">Edit</a></td>
+        
+        
     </tr>
     </#list>
     </tbody>

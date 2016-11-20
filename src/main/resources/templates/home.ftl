@@ -19,6 +19,11 @@
                 <button type="submit">Log out</button>
             </form>
         </li>
+        
+
+     
+     <li><a href="/operador/create">Create a new operador</a></li>
+        <li><a href="/operadores">View all operadores</a></li>
         <li><a href="/usuario/${currentUser.id}">View myself</a></li>
     </#if>
     <#if currentUser?? && currentUser.role == "ADMINCAPTURER">
@@ -26,6 +31,8 @@
         <li><a href="/usuarios">View all users</a></li>
     </#if>
     </ul>
+    
+
 </nav>
 </body>
 </html>

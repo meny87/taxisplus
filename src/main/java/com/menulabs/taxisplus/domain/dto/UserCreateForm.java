@@ -19,6 +19,9 @@ public class UserCreateForm {
 
     @NotNull
     private Role role = Role.CAPTURER;
+    
+    private long id = 0;
+
 
     public String getEmail() {
         return email;
@@ -61,5 +64,13 @@ public class UserCreateForm {
                 ", role=" + role +
                 '}';
     }
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 }

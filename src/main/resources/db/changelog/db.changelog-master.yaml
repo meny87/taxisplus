@@ -45,18 +45,23 @@ databaseChangeLog:
                   name: role
                   value: ADMINCAPTURER
   - changeSet: 
-    id: 3
-    author: magg
-    changes:
-     - createTable:
+      id: 3
+      author: magg
+      changes:
+        - createTable:
             tableName: operadores
             columns:
               - column:
-                  name: Tel_movil
-                  type: varchar(20)
-                  autoIncrement: false
+                  name: id
+                  type: int
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
+                    nullable: false
+              - column:
+                  name: Tel_movil
+                  type: varchar(20)
+                  constraints:
                     nullable: false
               - column:
                   name: Placas_ID
