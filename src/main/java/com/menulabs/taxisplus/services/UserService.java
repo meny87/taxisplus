@@ -27,19 +27,19 @@ public class UserService {
 		return Optional.ofNullable(userRepository.findOne(id));
 	}
 
-	public Optional<Usuario> getUserByEmail(String email) {
-		LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
-		return userRepository.findOneByEmail(email);
+	public Optional<Usuario> getUserByUsername(String username) {
+		LOGGER.debug("Getting user by username={}", username);
+		return userRepository.findOneByUsername(username);
 	}
 
 	public Collection<Usuario> getAllUsers() {
 		LOGGER.debug("Getting all users");
-		return userRepository.findAll(new Sort("email"));
+		return userRepository.findAll(new Sort("username"));
 	}
 
 	public Usuario create(UserCreateForm form) {
 		Usuario Usuario = new Usuario();
-		Usuario.setEmail(form.getEmail());
+		Usuario.setUsername(form.getUsername());
 		Usuario.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
 		Usuario.setRole(form.getRole());
 		return userRepository.save(Usuario);
@@ -47,7 +47,7 @@ public class UserService {
 	
 	public Usuario update(UserCreateForm form) {
 		Usuario Usuario = userRepository.findOne(form.getId());
-		Usuario.setEmail(form.getEmail());
+		Usuario.setUsername(form.getUsername());
 		Usuario.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
 		Usuario.setRole(form.getRole());
 		return userRepository.save(Usuario);

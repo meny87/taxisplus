@@ -18,7 +18,7 @@
 <table>
     <thead>
     <tr>
-        <th>E-mail</th>
+        <th>username</th>
         <th>Role</th>
         <th>Delete</th>
         <th>Edit</th>
@@ -28,7 +28,7 @@
     <tbody>
     <#list usuarios as usuario>
     <tr>
-        <td><a href="/usuario/${usuario.id}">${usuario.email}</a></td>
+        <td><a href="/usuario/${usuario.id}">${usuario.username}</a></td>
         <td>${usuario.role}</td>
         
         <td><a href="/usuario/${usuario.id}/delete">Delete</a></td>

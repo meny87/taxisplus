@@ -22,10 +22,10 @@ public class CurrentUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        LOGGER.debug("Authenticating user with email={}", email.replaceFirst("@.*", "@***"));
-        Usuario usuario = userService.getUserByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
+    public CurrentUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        LOGGER.debug("Authenticating user with username={}",username);
+        Usuario usuario = userService.getUserByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("User with username=%s was not found", username)));
         return new CurrentUser(usuario);
     }
 

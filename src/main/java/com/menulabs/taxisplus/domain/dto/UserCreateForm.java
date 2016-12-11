@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class UserCreateForm {
 
     @NotEmpty
-    private String email = "";
+    private String username = "";
 
     @NotEmpty
     private String password = "";
@@ -23,12 +23,12 @@ public class UserCreateForm {
     private long id = 0;
 
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -58,7 +58,7 @@ public class UserCreateForm {
     @Override
     public String toString() {
         return "UserCreateForm{" +
-                "email='" + email.replaceFirst("@.+", "@***") + '\'' +
+                "username='" + username +
                 ", password=***" + '\'' +
                 ", passwordRepeated=***" + '\'' +
                 ", role=" + role +

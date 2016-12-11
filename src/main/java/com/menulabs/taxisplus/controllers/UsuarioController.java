@@ -79,7 +79,7 @@ public class UsuarioController {
     public ModelAndView edit(@PathVariable Long id){
     	Optional<Usuario>  user = userService.getUserById(id);
     	UserCreateForm form = new UserCreateForm();
-    	form.setEmail(user.get().getEmail());
+    	form.setUsername(user.get().getUsername());
     	form.setRole(user.get().getRole());
     	form.setId(user.get().getId());
         return new ModelAndView("user_edit", "form", form);

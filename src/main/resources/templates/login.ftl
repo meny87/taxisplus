@@ -15,14 +15,14 @@
 
 <h1>Log in</h1>
 
-<p>You can use: demo@localhost / demo</p>
+<p>You can use: demo/ demo</p>
 
 <form role="form" action="/login" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <div>
-        <label for="email">Email address</label>
-        <input type="email" name="email" id="email" required autofocus/>
+        <label for="username">username</label>
+        <input type="username" name="username" id="username" required autofocus/>
     </div>
     <div>
         <label for="password">Password</label>

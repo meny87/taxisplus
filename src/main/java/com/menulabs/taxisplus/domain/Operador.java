@@ -14,31 +14,31 @@ import javax.persistence.Table;
 public class Operador {
 	
     @Basic(optional = false)
-    @Column(name = "Placas_ID")
+    @Column(name = "NUM_PLACAS")
     private String placasID;
     @Basic(optional = false)
-    @Column(name = "Nombre")
+    @Column(name = "NOMBRE")
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "Apellido_paterno")
+    @Column(name = "AP_PATERNO")
     private String apellidopaterno;
     @Basic(optional = false)
-    @Column(name = "Apellido_materno")
+    @Column(name = "AP_MATERNO")
     private String apellidomaterno;
     @Basic(optional = false)
-    @Column(name = "Calle_numero")
+    @Column(name = "CALLE_NUMERO")
     private String callenumero;
     @Basic(optional = false)
-    @Column(name = "Colonia")
+    @Column(name = "COLONIA")
     private String colonia;
     @Basic(optional = false)
     @Column(name = "CP")
     private int cp;
     @Basic(optional = false)
-    @Column(name = "Tel_particular")
+    @Column(name = "TEL_PARTICULAR")
     private String telparticular;
     @Basic(optional = false)
-    @Column(name = "Tel_movil")
+    @Column(name = "TEL_MOVIL")
     private String telmovil;
     
     @Id

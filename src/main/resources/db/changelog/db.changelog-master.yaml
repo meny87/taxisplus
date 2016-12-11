@@ -14,8 +14,8 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: email
-                  type: varchar(30)
+                  name: username
+                  type: varchar(50)
                   constraints:
                     nullable: false
               - column:
@@ -25,7 +25,7 @@ databaseChangeLog:
                     nullable: false      
               - column:
                   name: role
-                  type: varchar(30)
+                  type: varchar(45)
                   constraints:
                     nullable: false                 
   - changeSet:
@@ -36,8 +36,8 @@ databaseChangeLog:
            tableName: usuarios
            columns:
               - column: 
-                  name: email
-                  value: demo@localhost
+                  name: username
+                  value: demo
               - column: 
                   name: password_hash
                   value: $2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C
@@ -59,43 +59,43 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: Tel_movil
-                  type: varchar(20)
+                  name: TEL_MOVIL
+                  type: varchar(45)
                   constraints:
                     nullable: false
               - column:
-                  name: Placas_ID
-                  type: varchar(10)
+                  name: NUM_PLACAS
+                  type: varchar(60)
                   constraints:
                     nullable: false        
               - column:
-                  name: Nombre
-                  type: varchar(50)
+                  name: NOMBRE
+                  type: varchar(45)
                   constraints:
                     nullable: false
               - column:
-                  name: Apellido_paterno
-                  type: varchar(20)
+                  name: AP_PATERNO
+                  type: varchar(45)
                   constraints:
                     nullable: false
               - column:
-                  name: Apellido_materno
-                  type: varchar(20)
+                  name: AP_MATERNO
+                  type: varchar(45)
                   constraints:
                     nullable: false
               - column:
-                  name: Calle_numero
+                  name: CALLE_NUMERO
                   type: varchar(100)
                   constraints:
                     nullable: false
               - column:
-                  name: Colonia
-                  type: varchar(50)
+                  name: COLONIA
+                  type: varchar(100)
                   constraints:
                     nullable: false
               - column:
-                  name: Tel_particular
-                  type: varchar(20)
+                  name: TEL_PARTICULAR
+                  type: varchar(45)
                   constraints:
                     nullable: false
               - column:

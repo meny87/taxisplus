@@ -15,7 +15,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	private Usuario usuario;
 
     public CurrentUser(Usuario usuario) {
-        super(usuario.getEmail(), usuario.getPasswordHash(), AuthorityUtils.createAuthorityList(usuario.getRole().toString()));
+        super(usuario.getUsername(), usuario.getPasswordHash(), AuthorityUtils.createAuthorityList(usuario.getRole().toString()));
         this.usuario = usuario;
     }
 

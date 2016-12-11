@@ -7,5 +7,5 @@ import com.menulabs.taxisplus.domain.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    Optional<Usuario> findOneByEmail(String email);
+    Optional<Usuario> findOneByUsername(String username);
 }
