@@ -20,7 +20,7 @@ public class UsuariosController {
     @RequestMapping("/usuarios")
     public ModelAndView getUsersPage() {
         LOGGER.debug("Getting users page");
-        return new ModelAndView("usuarios", "usuarios", userService.getAllUsers());
+        return new ModelAndView("/usuarios/usuarios", "usuarios", userService.getAllUsers());
     }
 
 

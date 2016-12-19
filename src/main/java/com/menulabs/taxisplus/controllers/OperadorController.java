@@ -48,14 +48,14 @@ public class OperadorController {
 	    @RequestMapping("/operador/{id}")
 	    public ModelAndView getOperadorPage(@PathVariable Long id) {
 	        LOGGER.debug("Getting operador page for user={}", id);
-	        return new ModelAndView("operador", "operador", operadorService.getOperadorById(id)
+	        return new ModelAndView("operadores/operador", "operador", operadorService.getOperadorById(id)
 	                .orElseThrow(() -> new NoSuchElementException(String.format("Operador=%s not found", id))));
 	    }
 	    
 	    @RequestMapping(value = "/operador/create", method = RequestMethod.GET)
 	    public ModelAndView getOperadorCreatePage() {
 	        LOGGER.debug("Getting user create form");
-	        return new ModelAndView("operador_create", "form", new OperadorCreateForm());
+	        return new ModelAndView("operadores/operador_create", "form", new OperadorCreateForm());
 	    }
 
 	    @RequestMapping(value = "/operador/create", method = RequestMethod.POST)
@@ -72,10 +72,10 @@ public class OperadorController {
 	            // at the same time and form validation has passed for more than one of them.
 	            LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate telmovil", e);
 	            bindingResult.reject("telmovil.exists", "Telmovil already exists");
-	            return "operador_create";
+	            return "operadores/operador_create";
 	        }
 	        // ok, redirect
-	        return "redirect:/operadores";
+	        return "redirect:/operadores/operadores";
 	    }  
 	    
 	    
@@ -95,7 +95,7 @@ public class OperadorController {
 				form.setColonia(	op.get().getColonia());
 				form.setCp(op.get().getCp());
 				form.setTelparticular(op.get().getTelparticular());
-	        return new ModelAndView("operador_edit", "form", form);
+	        return new ModelAndView("operadores/operador_edit", "form", form);
 	    }
 	    
 	    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
@@ -104,7 +104,7 @@ public class OperadorController {
 	    	 LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
 	         if (bindingResult.hasErrors()) {
 	             // failed validation
-	             return "operador_edit";
+	             return "operadores/operador_edit";
 	         }
 	         try {
 	        	 operadorService.update(form);
@@ -113,17 +113,17 @@ public class OperadorController {
 	             // at the same time and form validation has passed for more than one of them.
 	             LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate telmovil", e);
 	             bindingResult.reject("telmovil.exists", "telmovil already exists");
-	             return "operador_edit";
+	             return "operadores/operador_edit";
 	         }
 	         // ok, redirect
-	         return "redirect:/operadores";
+	         return "redirect:/operadores/operadores";
 	    }
 	    
 	    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
 	    @RequestMapping(value = "/operador/{id}/delete", method = RequestMethod.GET)
 	    public ModelAndView delete(@PathVariable long id) {
 	    	operadorService.delete(id);
-	        return new ModelAndView("redirect:/operadores");
+	        return new ModelAndView("redirect:/operadores/operadores");
 	    }
 
 }

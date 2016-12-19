@@ -42,7 +42,7 @@ public class UsuarioController {
     @RequestMapping("/usuario/{id}")
     public ModelAndView getUserPage(@PathVariable Long id) {
         LOGGER.debug("Getting user page for user={}", id);
-        return new ModelAndView("usuario", "usuario", userService.getUserById(id)
+        return new ModelAndView("/usuarios/usuario", "usuario", userService.getUserById(id)
                 .orElseThrow(() -> new NoSuchElementException(String.format("Usuario=%s not found", id))));
     }
 
@@ -50,7 +50,7 @@ public class UsuarioController {
     @RequestMapping(value = "/usuario/create", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage() {
         LOGGER.debug("Getting user create form");
-        return new ModelAndView("user_create", "form", new UserCreateForm());
+        return new ModelAndView("/usuarios/user_create", "form", new UserCreateForm());
     }
 
     @PreAuthorize("hasAuthority('ADMINCAPTURER')")
@@ -59,7 +59,7 @@ public class UsuarioController {
         LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
             // failed validation
-            return "user_create";
+            return "/usuarios/user_create";
         }
         try {
             userService.create(form);
@@ -68,10 +68,10 @@ public class UsuarioController {
             // at the same time and form validation has passed for more than one of them.
             LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
             bindingResult.reject("email.exists", "Email already exists");
-            return "user_create";
+            return "/usuarios/user_create";
         }
         // ok, redirect
-        return "redirect:/usuarios";
+        return "redirect:/usuarios/usuarios";
     }
     
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
@@ -82,7 +82,7 @@ public class UsuarioController {
     	form.setUsername(user.get().getUsername());
     	form.setRole(user.get().getRole());
     	form.setId(user.get().getId());
-        return new ModelAndView("user_edit", "form", form);
+        return new ModelAndView("/usuarios/user_edit", "form", form);
     }
     
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
@@ -91,7 +91,7 @@ public class UsuarioController {
     	 LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
          if (bindingResult.hasErrors()) {
              // failed validation
-             return "user_edit";
+             return "/usuarios/user_edit";
          }
          try {
              userService.update(form);
@@ -100,17 +100,17 @@ public class UsuarioController {
              // at the same time and form validation has passed for more than one of them.
              LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
              bindingResult.reject("email.exists", "Email already exists");
-             return "user_edit";
+             return "/usuarios/user_edit";
          }
          // ok, redirect
-         return "redirect:/usuarios";
+         return "redirect:/usuarios/usuarios";
     }
     
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
     @RequestMapping(value = "/usuario/{id}/delete", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable long id) {
     	userService.delete(id);
-        return new ModelAndView("redirect:/usuarios");
+        return new ModelAndView("redirect:/usuarios/usuarios");
     }
 
 

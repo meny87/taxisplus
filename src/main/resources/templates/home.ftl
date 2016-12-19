@@ -1,38 +1,30 @@
 <#-- @ftlvariable name="_csrf" type="org.springframework.security.web.csrf.CsrfToken" -->
 <#-- @ftlvariable name="currentUser" type="com.menulabs.taxiplus.domain.dto.CurrentUser" -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Home page</title>
+
+
+<#include "header.ftl">
+    <title>Sistema de Administración Taxis Plus</title>
 </head>
 <body>
-<nav role="navigation">
-    <ul>
-    <#if !currentUser??>
-        <li><a href="/login">Log in</a></li>
-    </#if>
-    <#if currentUser??>
-        <li>
-            <form action="/logout" method="post">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <button type="submit">Log out</button>
-            </form>
-        </li>
-        
+<#include "menu.ftl">
 
-     
-     <li><a href="/operador/create">Create a new operador</a></li>
-        <li><a href="/operadores">View all operadores</a></li>
-        <li><a href="/usuario/${currentUser.id}">View myself</a></li>
-    </#if>
-    <#if currentUser?? && currentUser.role == "ADMINCAPTURER">
-        <li><a href="/usuario/create">Create a new user</a></li>
-        <li><a href="/usuarios">View all users</a></li>
-    </#if>
-    </ul>
-    
 
-</nav>
+<header id="header">
+                    <div class="intro text-center">
+                        <div class="overlay">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="intro-text">
+                                        <br />
+
+                                        <h1>Bienvenido a <span class="brand">Taxis Plus</span></h1>
+                                        <p>Sistema de Administración</p>
+                                    </div>
+                                </div>
+                            </div></div></div></header>
+
+
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
