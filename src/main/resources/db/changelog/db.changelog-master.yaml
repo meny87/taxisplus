@@ -7,24 +7,24 @@ databaseChangeLog:
             tableName: usuarios
             columns:
               - column:
-                  name: id
+                  name: ID
                   type: int
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: username
+                  name: USERNAME
                   type: varchar(50)
                   constraints:
                     nullable: false
               - column:
-                  name: password_hash
+                  name: PASSWORD_HASH
                   type: varchar(255)
                   constraints:
                     nullable: false      
               - column:
-                  name: role
+                  name: ROLE
                   type: varchar(45)
                   constraints:
                     nullable: false                 
@@ -33,26 +33,26 @@ databaseChangeLog:
       author: magg
       changes:
         - insert:
-           tableName: usuarios
+           tableName: USUARIOS
            columns:
               - column: 
-                  name: username
+                  name: USERNAME
                   value: demo
               - column: 
-                  name: password_hash
+                  name: PASSWORD_HASH
                   value: $2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C
               - column: 
-                  name: role
+                  name: ROLE
                   value: ADMINCAPTURER
   - changeSet: 
       id: 3
       author: magg
       changes:
         - createTable:
-            tableName: operadores
+            tableName: OPERADORES
             columns:
               - column:
-                  name: id
+                  name: ID
                   type: int
                   autoIncrement: true
                   constraints:
@@ -103,6 +103,158 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+  - changeSet: 
+      id: 4
+      author: magg
+      changes:
+        - createTable:
+            tableName: ASEGURADORAS
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NOMBRE
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DIRECCION
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: TELEFONO
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NOMBRE_RESPONSABLE
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: NUMERO_EMERGENCIA1
+                  type: varchar(45)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: NUMERO_EMERGENCIA2
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: COMENTARIOS
+                  type: varchar(300)
+                  constraints:
+                    nullable: true                              
+        - createTable:
+            tableName: UNIDADES
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: NUMERO_ECONOMICO
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: NUM_PLACA
+                  type: varchar(60)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: MARCA
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: MODELO
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AC
+                  type: char
+                  constraints:
+                    nullable: true
+              - column:
+                  name: RADIO_AM_FM
+                  type: char
+                  constraints:
+                    nullable: true
+              - column:
+                  name: RADIO_TELECOM
+                  type: char
+                  constraints:
+                    nullable: true
+              - column:
+                  name: AUX
+                  type: char
+                  constraints:
+                    nullable: true
+              - column:
+                  name: BT
+                  type: char
+                  constraints:
+                    nullable: true       
+              - column:
+                  name: ID_ASEGURADORA
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: ID_ASEGURADORA
+            baseTableName: UNIDADES
+            constraintName: ASEGURADORAS_UNIDADES
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: ID
+            referencedTableName: ASEGURADORAS  
+        - createIndex:
+            columns:
+            - column:
+                name: ID_ASEGURADORA
+                type: int
+            indexName: ASEGURADORAS_UNIDADES
+            tableName: UNIDADES
+            unique: true     
+        - createIndex:
+            columns:
+            - column:
+                name: NUM_PLACAS
+                type: varchar(60)
+            indexName: UNIDADES_OPERADORES
+            tableName: OPERADORES
+            unique: true      
+        - addForeignKeyConstraint:
+            baseColumnNames: NUM_PLACAS
+            baseTableName: UNIDADES
+            constraintName: UNIDADES_OPERADORES
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: NUM_PLACA
+            referencedTableName: UNIDADES       
+            
+                 
+                    
+                    
+                    
+              
+           
                     
               
            

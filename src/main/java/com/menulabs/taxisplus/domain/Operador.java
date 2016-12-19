@@ -43,7 +43,7 @@ public class Operador {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
 
     public Operador() {

@@ -4,184 +4,174 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "unidades")
 public class Unidad {
 
 	 @Size(max = 10)
-	    @Column(name = "Placas_ID")
-	    private String placasID;
+	    @Column(name = "NUM_PLACA")
+	    private String numPlaca;
 	    @Id
 	    @Basic(optional = false)
 	    @NotNull
-	    @Column(name = "Numero_economico")
-	    private Integer numeroeconomico;
-	    @Basic(optional = false)
+	    @Column(name = "NUMERO_ECONOMICO")
+	    private Integer numeroEconomico;
+		@Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 10)
-	    @Column(name = "Marca")
+	    @Column(name = "MARCA")
 	    private String marca;
 	    @Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 20)
-	    @Column(name = "Modelo")
+	    @Column(name = "MODELO")
 	    private String modelo;
 	    @Basic(optional = false)
 	    @NotNull
-	    @Column(name = "Num_plazas")
-	    private int numplazas;
+	    @Size(min = 1, max = 1)
+	    @Column(name = "AC")
+	    private String ac;
 	    @Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 1)
-	    @Column(name = "Aire_Acondicionado")
-	    private String aireAcondicionado;
+	    @Column(name = "RADIO_TELECOM")
+	    private String radioTelecom;
 	    @Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 1)
-	    @Column(name = "Radio_telecomunicador")
-	    private String radiotelecomunicador;
+	    @Column(name = "RADIO_AM_FM")
+	    private String radioAmFm;
 	    @Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 1)
-	    @Column(name = "Radio_am_fm")
-	    private String radioamfm;
+	    @Column(name = "AUX")
+	    private String aux;
 	    @Basic(optional = false)
 	    @NotNull
 	    @Size(min = 1, max = 1)
-	    @Column(name = "Conector_aux")
-	    private String conectoraux;
-	    @Basic(optional = false)
-	    @NotNull
-	    @Size(min = 1, max = 1)
-	    @Column(name = "Bluetooth")
-	    private String bluetooth;
+	    @Column(name = "BT")
+	    private String bt;
+	    @Column(name = "ID_ASEGURADORA")
+	    private int idAseguradora;
+	  
+	    @ManyToOne
+		@JoinColumn(name = "ID", referencedColumnName="ID_ASEGURADORA")
+		@MapsId("resName")
+		private Aseguradora aseguradora;
 
 	    public Unidad() {
 	    }
+	    
+	    public Unidad(String numPlaca, Integer numeroEconomico, String marca, String modelo, String ac,
+				String radioTelecom, String radioAmFm, String aux, String bt, Aseguradora aseguradora) {
+			super();
+			this.numPlaca = numPlaca;
+			this.numeroEconomico = numeroEconomico;
+			this.marca = marca;
+			this.modelo = modelo;
+			this.ac = ac;
+			this.radioTelecom = radioTelecom;
+			this.radioAmFm = radioAmFm;
+			this.aux = aux;
+			this.bt = bt;
+			this.aseguradora = aseguradora;
+		}
 
-	    public Unidad(Integer numeroeconomico) {
-	        this.numeroeconomico = numeroeconomico;
-	    }
+		public String getNumPlaca() {
+			return numPlaca;
+		}
 
-	    public Unidad(Integer numeroeconomico, String marca, String modelo, int numplazas, String aireAcondicionado, String radiotelecomunicador, String radioamfm, String conectoraux, String bluetooth) {
-	        this.numeroeconomico = numeroeconomico;
-	        this.marca = marca;
-	        this.modelo = modelo;
-	        this.numplazas = numplazas;
-	        this.aireAcondicionado = aireAcondicionado;
-	        this.radiotelecomunicador = radiotelecomunicador;
-	        this.radioamfm = radioamfm;
-	        this.conectoraux = conectoraux;
-	        this.bluetooth = bluetooth;
-	    }
+		public void setNumPlaca(String numPlaca) {
+			this.numPlaca = numPlaca;
+		}
 
-	    public String getPlacasID() {
-	        return placasID;
-	    }
+		public Integer getNumeroEconomico() {
+			return numeroEconomico;
+		}
 
-	    public void setPlacasID(String placasID) {
-	        this.placasID = placasID;
-	    }
+		public void setNumeroEconomico(Integer numeroEconomico) {
+			this.numeroEconomico = numeroEconomico;
+		}
 
-	    public Integer getNumeroeconomico() {
-	        return numeroeconomico;
-	    }
+		public String getMarca() {
+			return marca;
+		}
 
-	    public void setNumeroeconomico(Integer numeroeconomico) {
-	        this.numeroeconomico = numeroeconomico;
-	    }
+		public void setMarca(String marca) {
+			this.marca = marca;
+		}
 
-	    public String getMarca() {
-	        return marca;
-	    }
+		public String getModelo() {
+			return modelo;
+		}
 
-	    public void setMarca(String marca) {
-	        this.marca = marca;
-	    }
+		public void setModelo(String modelo) {
+			this.modelo = modelo;
+		}
 
-	    public String getModelo() {
-	        return modelo;
-	    }
+		public String getAc() {
+			return ac;
+		}
 
-	    public void setModelo(String modelo) {
-	        this.modelo = modelo;
-	    }
+		public void setAc(String ac) {
+			this.ac = ac;
+		}
 
-	    public int getNumplazas() {
-	        return numplazas;
-	    }
+		public String getRadioTelecom() {
+			return radioTelecom;
+		}
 
-	    public void setNumplazas(int numplazas) {
-	        this.numplazas = numplazas;
-	    }
+		public void setRadioTelecom(String radioTelecom) {
+			this.radioTelecom = radioTelecom;
+		}
 
-	    public String getAireAcondicionado() {
-	        return aireAcondicionado;
-	    }
+		public String getRadioAmFm() {
+			return radioAmFm;
+		}
 
-	    public void setAireAcondicionado(String aireAcondicionado) {
-	        this.aireAcondicionado = aireAcondicionado;
-	    }
+		public void setRadioAmFm(String radioAmFm) {
+			this.radioAmFm = radioAmFm;
+		}
 
-	    public String getRadiotelecomunicador() {
-	        return radiotelecomunicador;
-	    }
+		public String getAux() {
+			return aux;
+		}
 
-	    public void setRadiotelecomunicador(String radiotelecomunicador) {
-	        this.radiotelecomunicador = radiotelecomunicador;
-	    }
+		public void setAux(String aux) {
+			this.aux = aux;
+		}
 
-	    public String getRadioamfm() {
-	        return radioamfm;
-	    }
+		public String getBt() {
+			return bt;
+		}
 
-	    public void setRadioamfm(String radioamfm) {
-	        this.radioamfm = radioamfm;
-	    }
+		public void setBt(String bt) {
+			this.bt = bt;
+		}
 
-	    public String getConectoraux() {
-	        return conectoraux;
-	    }
+		public Aseguradora getAseguradora() {
+			return aseguradora;
+		}
 
-	    public void setConectoraux(String conectoraux) {
-	        this.conectoraux = conectoraux;
-	    }
+		public void setAseguradora(Aseguradora aseguradora) {
+			this.aseguradora = aseguradora;
+		}
 
-	    public String getBluetooth() {
-	        return bluetooth;
-	    }
+		public int getIdAseguradora() {
+			return idAseguradora;
+		}
 
-	    public void setBluetooth(String bluetooth) {
-	        this.bluetooth = bluetooth;
-	    }
+		public void setIdAseguradora(int idAseguradora) {
+			this.idAseguradora = idAseguradora;
+		}
 
-	    @Override
-	    public int hashCode() {
-	        int hash = 0;
-	        hash += (numeroeconomico != null ? numeroeconomico.hashCode() : 0);
-	        return hash;
-	    }
-
-	    @Override
-	    public boolean equals(Object object) {
-	        // TODO: Warning - this method won't work in the case the id fields are not set
-	        if (!(object instanceof Unidad)) {
-	            return false;
-	        }
-	        Unidad other = (Unidad) object;
-	        if ((this.numeroeconomico == null && other.numeroeconomico != null) || (this.numeroeconomico != null && !this.numeroeconomico.equals(other.numeroeconomico))) {
-	            return false;
-	        }
-	        return true;
-	    }
-
-	    @Override
-	    public String toString() {
-	        return "com.tp14.entities.Unidades[ numeroeconomico=" + numeroeconomico + " ]";
-	    }
-	
+	    
 }
