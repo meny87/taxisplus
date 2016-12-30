@@ -23,47 +23,34 @@ public class Unidad {
 	    @Column(name = "ID", nullable = false, updatable = false)
 	    private Long id;
 	
-		@Size(max = 10)
 	    @Column(name = "NUM_PLACAS")
 		private String numPlacas;
 
 	    @Basic(optional = false)
-	    @NotNull
 	    @Column(name = "NUMERO_ECONOMICO")
 	    private Integer numeroEconomico;
 		@Basic(optional = false)
-	    @NotNull
-	    @Size(min = 1, max = 10)
 	    @Column(name = "MARCA")
 	    private String marca;
 	    @Basic(optional = false)
-	    @NotNull
 	    @Size(min = 1, max = 20)
 	    @Column(name = "MODELO")
 	    private String modelo;
 	    @Basic(optional = false)
-	    @NotNull
-	    @Size(min = 1, max = 1)
 	    @Column(name = "AC")
 	    private String ac;
 	    @Basic(optional = false)
-	    @NotNull
 	    @Size(min = 1, max = 1)
 	    @Column(name = "RADIO_TELECOM")
 	    private String radioTelecom;
 	    @Basic(optional = false)
-	    @NotNull
 	    @Size(min = 1, max = 1)
 	    @Column(name = "RADIO_AM_FM")
 	    private String radioAmFm;
 	    @Basic(optional = false)
-	    @NotNull
-	    @Size(min = 1, max = 1)
 	    @Column(name = "AUX")
 	    private String aux;
 	    @Basic(optional = false)
-	    @NotNull
-	    @Size(min = 1, max = 1)
 	    @Column(name = "BT")
 	    private String bt;
 	    @Column(name = "ID_ASEGURADORA")

@@ -13,7 +13,6 @@ import com.menulabs.taxisplus.services.SocioService;
 public class SociosController {
 	
 	 private static final Logger LOGGER = LoggerFactory.getLogger(SociosController.class);
-
 	
 	@Autowired
     private  SocioService socioService;

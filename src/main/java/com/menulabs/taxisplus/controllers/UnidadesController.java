@@ -13,7 +13,7 @@ import com.menulabs.taxisplus.services.UnidadService;
 public class UnidadesController {
 	
 	
-	 private static final Logger LOGGER = LoggerFactory.getLogger(UnidadesController.class);
+	 	private static final Logger LOGGER = LoggerFactory.getLogger(UnidadesController.class);
 	    
 	    @Autowired
 	    private  UnidadService unidadService;

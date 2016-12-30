@@ -7,9 +7,6 @@ import javax.validation.constraints.Size;
 public class OperadorCreateForm {
 	
 	    @NotNull
-	    @Size(min = 1, max = 10)
-	    private String placasID = "";
-	    @NotNull
 	    @Size(min = 1, max = 50)
 	    private String nombre= "";
 	    @NotNull
@@ -35,12 +32,6 @@ public class OperadorCreateForm {
 	    
 	    private long id  = 0;
 	    
-		public String getPlacasID() {
-			return placasID;
-		}
-		public void setPlacasID(String placasID) {
-			this.placasID = placasID;
-		}
 		public String getNombre() {
 			return nombre;
 		}
