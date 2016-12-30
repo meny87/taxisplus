@@ -38,7 +38,9 @@ public class OperadorService {
 	}
 	public Operador create(OperadorCreateForm form) {
 		Operador op = new Operador(form.getTelmovil(),
-				form.getPlacasID(), form.getNombre(), form.getApellidopaterno(), 
+				//form.getPlacasID(), 
+				form.getNombre(), 
+				form.getApellidopaterno(), 
 				form.getApellidomaterno(), form.getCallenumero(), form.getColonia(),
 				form.getCp(), form.getTelparticular());		
 		return operadorRepository.save(op);
@@ -48,7 +50,7 @@ public class OperadorService {
 		Operador op = operadorRepository.findOne(form.getId());
 		
 		op.setTelmovil(form.getTelmovil());
-		op.setPlacasID(form.getPlacasID());
+		//op.setPlacasID(form.getPlacasID());
 		op.setNombre(form.getNombre());
 		op.setApellidopaterno(form.getApellidopaterno());
 		op.setApellidomaterno(	form.getApellidomaterno() );

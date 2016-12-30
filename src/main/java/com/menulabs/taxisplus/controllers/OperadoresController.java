@@ -21,7 +21,7 @@ public class OperadoresController {
 	    @RequestMapping("/operadores")
 	    public ModelAndView getOperadoresPage() {
 	        LOGGER.debug("Getting operadores page");
-	        return new ModelAndView("operadores", "operadores", operadorService.getAllOperators());
+	        return new ModelAndView("operadores/operadores", "operadores", operadorService.getAllOperators());
 	    }
 
 }

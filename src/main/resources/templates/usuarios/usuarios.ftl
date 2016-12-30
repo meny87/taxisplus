@@ -38,7 +38,11 @@
     </#list>
     </tbody>
 </table>
+    <#if currentUser?? && currentUser.role == "ADMINCAPTURER">
+
+
  <a href="/usuario/create" value="Registrar nuevo Usuario " class="btn btn-success"><i class="icon-plus icon-white"></i>Registrar nuevo Usuario</a>
+    </#if>
 
 </form>
 </div>

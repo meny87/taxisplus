@@ -4,7 +4,7 @@ databaseChangeLog:
       author: magg
       changes:
         - createTable:
-            tableName: usuarios
+            tableName: USUARIOS
             columns:
               - column:
                   name: ID
@@ -43,68 +43,9 @@ databaseChangeLog:
                   value: $2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C
               - column: 
                   name: ROLE
-                  value: ADMINCAPTURER
+                  value: ADMINCAPTURER    
   - changeSet: 
       id: 3
-      author: magg
-      changes:
-        - createTable:
-            tableName: OPERADORES
-            columns:
-              - column:
-                  name: ID
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: TEL_MOVIL
-                  type: varchar(45)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: NUM_PLACAS
-                  type: varchar(60)
-                  constraints:
-                    nullable: false        
-              - column:
-                  name: NOMBRE
-                  type: varchar(45)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: AP_PATERNO
-                  type: varchar(45)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: AP_MATERNO
-                  type: varchar(45)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: CALLE_NUMERO
-                  type: varchar(100)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: COLONIA
-                  type: varchar(100)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: TEL_PARTICULAR
-                  type: varchar(45)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: CP
-                  type: int
-                  constraints:
-                    nullable: false
-  - changeSet: 
-      id: 4
       author: magg
       changes:
         - createTable:
@@ -163,13 +104,18 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: NUM_PLACAS
+                  type: varchar(60)
+                  constraints:
+                    nullable: false       
+              - column:
                   name: NUMERO_ECONOMICO
                   type: int
                   constraints:
                     nullable: false
               - column:
-                  name: NUM_PLACA
-                  type: varchar(60)
+                  name: ID_OPERADOR
+                  type: int
                   constraints:
                     nullable: false        
               - column:
@@ -216,8 +162,6 @@ databaseChangeLog:
             baseColumnNames: ID_ASEGURADORA
             baseTableName: UNIDADES
             constraintName: ASEGURADORAS_UNIDADES
-            deferrable: true
-            initiallyDeferred: true
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: ID
@@ -229,32 +173,139 @@ databaseChangeLog:
                 type: int
             indexName: ASEGURADORAS_UNIDADES
             tableName: UNIDADES
-            unique: true     
+  - changeSet: 
+      id: 4
+      author: magg
+      changes:
+        - createTable:
+            tableName: OPERADORES
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: TEL_MOVIL
+                  type: varchar(45)
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: NOMBRE
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AP_PATERNO
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AP_MATERNO
+                  type: varchar(45)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CALLE_NUMERO
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: COLONIA
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: TEL_PARTICULAR
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: CP
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: ID_OPERADOR
+            baseTableName: UNIDADES
+            constraintName: UNIDADES_OPERADORES
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            referencedColumnNames: ID
+            referencedTableName: OPERADORES
         - createIndex:
             columns:
             - column:
-                name: NUM_PLACAS
+                name: ID_OPERADOR
                 type: varchar(60)
             indexName: UNIDADES_OPERADORES
-            tableName: OPERADORES
-            unique: true      
+            tableName: UNIDADES  
+  - changeSet: 
+      id: 5
+      author: magg
+      changes:
+        - createTable:
+            tableName: SOCIOS
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false 
+              - column:
+                  name: NOMBRE
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: DIRECCION
+                  type: varchar(145)
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: TEL_MOVIL
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: TEL_PARTICULAR
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ID_UNIDAD
+                  type: int
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: AP_PATERNO
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: AP_MATERNO
+                  type: varchar(45)
+                  constraints:
+                    nullable: true
         - addForeignKeyConstraint:
-            baseColumnNames: NUM_PLACAS
-            baseTableName: UNIDADES
-            constraintName: UNIDADES_OPERADORES
-            deferrable: true
-            initiallyDeferred: true
+            baseColumnNames: ID_UNIDAD
+            baseTableName: SOCIOS
+            constraintName: SOCIOS_UNIDADES
             onDelete: CASCADE
             onUpdate: CASCADE
-            referencedColumnNames: NUM_PLACA
-            referencedTableName: UNIDADES       
+            referencedColumnNames: ID
+            referencedTableName: UNIDADES
+        - createIndex:
+            columns:
+            - column:
+                name: ID_UNIDAD
+                type: int
+            indexName: SOCIOS_UNIDADES
+            tableName: SOCIOS                                                               
+         
             
                  
-                    
-                    
-                    
-              
-           
-                    
-              
-           

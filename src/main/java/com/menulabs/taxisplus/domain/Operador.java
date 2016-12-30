@@ -10,12 +10,9 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "operadores")
+@Table(name = "OPERADORES")
 public class Operador {
 	
-    @Basic(optional = false)
-    @Column(name = "NUM_PLACAS")
-    private String placasID;
     @Basic(optional = false)
     @Column(name = "NOMBRE")
     private String nombre;
@@ -53,9 +50,8 @@ public class Operador {
         this.telmovil = telmovil;
     }
 
-    public Operador(String telmovil, String placasID, String nombre, String apellidopaterno, String apellidomaterno, String callenumero, String colonia, int cp, String telparticular) {
+    public Operador(String telmovil, String nombre, String apellidopaterno, String apellidomaterno, String callenumero, String colonia, int cp, String telparticular) {
         this.telmovil = telmovil;
-        this.placasID = placasID;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
         this.apellidomaterno = apellidomaterno;
@@ -72,14 +68,6 @@ public class Operador {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-    public String getPlacasID() {
-        return placasID;
-    }
-
-    public void setPlacasID(String placasID) {
-        this.placasID = placasID;
-    }
 
     public String getNombre() {
         return nombre;

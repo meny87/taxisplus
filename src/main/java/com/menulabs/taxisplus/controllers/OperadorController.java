@@ -87,7 +87,7 @@ public class OperadorController {
 
 	    	
 			form.setTelmovil(op.get().getTelmovil());
-			form.setPlacasID(op.get().getPlacasID());
+			//form.setPlacasID(op.get().getPlacasID());
 			form.setNombre(op.get().getNombre());
 			form.setApellidopaterno(op.get().getApellidopaterno());
 			form.setApellidomaterno(	op.get().getApellidomaterno() );

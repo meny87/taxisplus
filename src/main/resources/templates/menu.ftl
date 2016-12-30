@@ -15,7 +15,19 @@
                             <li><a href="/socios">Socios</a></li>  
                             <li><a href="/unidades">Unidades</a></li>  
                             <li><a href="/usuarios">Usuarios</a></li>                            
-                           
+                             <#if !currentUser??>
+        <li><a href="/login">Log in</a></li>
+    </#if>
+    <#if currentUser??>
+    
+        <li>
+                        <form action="/logout" method="post" style="margin:0px">
+        
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button class="btn btn-link" type="submit">Log out</button>
+            </form>
+        </li>
+                  </#if>
                             
                         </ul>
                     </div><!--/.nav-collapse -->

@@ -1,39 +1,46 @@
 <#-- @ftlvariable name="users" type="java.util.List<com.menulabs.taxiplus.domain.Operador>" -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>List of Operadores</title>
-</head>
+<#include "../header2.ftl">
+    <title>Sistema de Administración Taxis Plus</title>
+</head>    
+
+ </head>   
 <body>
-<nav role="navigation">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/operador/create">Create a new operator</a></li>
-    </ul>
-</nav>
+<#include "../menu.ftl">
+<h1>
+            <div class="container">
+                <div class="well"><span class="text-info text-center">Operadores</span>
+                </div>
+            </div>
+        </h1>
 
-<h1>List of Operatores</h1>
-
-<table>
+<div class="container">
+<form class="jsfcrud_list_form" > 
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Tel movil</th>
         <th>Placas</th>
-         <th>Delete</th>
-        <th>Edit</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+        
     </tr>
     </thead>
     <tbody>
     <#list operadores as operador>
     <tr>
         <td><a href="/operador/${operador.id}">${operador.telmovil}</a></td>
-        <td>${operador.placasID}</td>
-                <td><a href="/operador/${operador.id}/delete">Delete</a></td>
-        <td><a href="/operador/${operador.id}/edit">Edit</a></td>
+        <td>${operador.id}</td>
+        <td><a href="/operador/${operador.id}"><i class="icon-eye-open"></a></td>
+        <td><a href="/operador/${operador.id}/edit"><i class="icon-pencil"></i></a></td>
+        <td><a href="/operador/${operador.id}/delete"><i class="icon-remove"></i></a></td>
     </tr>
     </#list>
     </tbody>
 </table>
+
+ <a href="/operador/create" value="Registrar nuevo Operador " class="btn btn-success"><i class="icon-plus icon-white"></i>Registrar nuevo Operador</a>
+
+</form>
+</div>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.menulabs.taxisplus.domain;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,13 +15,18 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "unidades")
+@Table(name = "UNIDADES")
 public class Unidad {
 
-	 @Size(max = 10)
-	    @Column(name = "NUM_PLACA")
-	    private String numPlaca;
-	    @Id
+	 	@Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "ID", nullable = false, updatable = false)
+	    private Long id;
+	
+		@Size(max = 10)
+	    @Column(name = "NUM_PLACAS")
+		private String numPlacas;
+
 	    @Basic(optional = false)
 	    @NotNull
 	    @Column(name = "NUMERO_ECONOMICO")
@@ -63,17 +70,16 @@ public class Unidad {
 	    private int idAseguradora;
 	  
 	    @ManyToOne
-		@JoinColumn(name = "ID", referencedColumnName="ID_ASEGURADORA")
-		@MapsId("resName")
+		@JoinColumn(name = "ID_ASEGURADORA", referencedColumnName="ID")
+		@MapsId("id")
 		private Aseguradora aseguradora;
 
 	    public Unidad() {
 	    }
 	    
-	    public Unidad(String numPlaca, Integer numeroEconomico, String marca, String modelo, String ac,
-				String radioTelecom, String radioAmFm, String aux, String bt, Aseguradora aseguradora) {
+	    public Unidad(Integer numeroEconomico, String marca, String modelo, String ac,
+				String radioTelecom, String radioAmFm, String aux, String bt, int idAseguradora ) {
 			super();
-			this.numPlaca = numPlaca;
 			this.numeroEconomico = numeroEconomico;
 			this.marca = marca;
 			this.modelo = modelo;
@@ -82,15 +88,7 @@ public class Unidad {
 			this.radioAmFm = radioAmFm;
 			this.aux = aux;
 			this.bt = bt;
-			this.aseguradora = aseguradora;
-		}
-
-		public String getNumPlaca() {
-			return numPlaca;
-		}
-
-		public void setNumPlaca(String numPlaca) {
-			this.numPlaca = numPlaca;
+			this.idAseguradora = idAseguradora;
 		}
 
 		public Integer getNumeroEconomico() {
@@ -173,5 +171,20 @@ public class Unidad {
 			this.idAseguradora = idAseguradora;
 		}
 
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getNumPlacas() {
+			return numPlacas;
+		}
+
+		public void setNumPlacas(String numPlacas) {
+			this.numPlacas = numPlacas;
+		}
 	    
 }
