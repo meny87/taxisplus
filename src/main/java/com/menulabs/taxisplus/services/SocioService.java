@@ -33,12 +33,29 @@ public class SocioService {
 	
 	public Socio update(SocioCreateForm form) {
 		Socio s = socioRepository.findOne(form.getId());
+		
+		s.setTelmovil(form.getTelmovil());
+		s.setNombre(form.getNombre());
+		s.setDireccion(form.getDireccion());
+		s.setApellidopaterno(form.getApellidopaterno());
+		s.setApellidomaterno(	form.getApellidomaterno() );
+		s.setTelparticular(form.getTelparticular());
+		s.setIdUnidad(form.getIdUnidad());
+		
 		return socioRepository.save(s);
 	}
 	
 	
 	public Socio create(SocioCreateForm form) {
-		Socio s = new Socio();		
+		Socio s = new Socio(
+				form.getNombre(), 
+				form.getTelmovil(),
+				form.getApellidopaterno(),
+				form.getApellidomaterno(),
+				form.getDireccion(),
+				form.getTelparticular(),
+				form.getIdUnidad()
+				);		
 		return socioRepository.save(s);
 	}
 	public void delete (Long id){

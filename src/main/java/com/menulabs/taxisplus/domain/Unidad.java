@@ -10,9 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 @Entity
 @Table(name = "UNIDADES")
@@ -33,18 +30,15 @@ public class Unidad {
 	    @Column(name = "MARCA")
 	    private String marca;
 	    @Basic(optional = false)
-	    @Size(min = 1, max = 20)
 	    @Column(name = "MODELO")
 	    private String modelo;
 	    @Basic(optional = false)
 	    @Column(name = "AC")
 	    private String ac;
 	    @Basic(optional = false)
-	    @Size(min = 1, max = 1)
 	    @Column(name = "RADIO_TELECOM")
 	    private String radioTelecom;
 	    @Basic(optional = false)
-	    @Size(min = 1, max = 1)
 	    @Column(name = "RADIO_AM_FM")
 	    private String radioAmFm;
 	    @Basic(optional = false)
@@ -54,9 +48,9 @@ public class Unidad {
 	    @Column(name = "BT")
 	    private String bt;
 	    @Column(name = "ID_ASEGURADORA")
-	    private int idAseguradora;
-	  
-	    @ManyToOne
+	    private long idAseguradora;
+
+		@ManyToOne
 		@JoinColumn(name = "ID_ASEGURADORA", referencedColumnName="ID")
 		@MapsId("id")
 		private Aseguradora aseguradora;
@@ -65,7 +59,7 @@ public class Unidad {
 	    }
 	    
 	    public Unidad(Integer numeroEconomico, String marca, String modelo, String ac,
-				String radioTelecom, String radioAmFm, String aux, String bt, int idAseguradora ) {
+				String radioTelecom, String radioAmFm, String aux, String bt, long idAseguradora ) {
 			super();
 			this.numeroEconomico = numeroEconomico;
 			this.marca = marca;
@@ -150,11 +144,11 @@ public class Unidad {
 			this.aseguradora = aseguradora;
 		}
 
-		public int getIdAseguradora() {
+		public long getIdAseguradora() {
 			return idAseguradora;
 		}
 
-		public void setIdAseguradora(int idAseguradora) {
+		public void setIdAseguradora(long idAseguradora) {
 			this.idAseguradora = idAseguradora;
 		}
 

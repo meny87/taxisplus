@@ -75,7 +75,7 @@ public class OperadorController {
 	            return "operadores/operador_create";
 	        }
 	        // ok, redirect
-	        return "redirect:/operadores/operadores";
+	        return "redirect:/operadores/";
 	    }  
 	    
 	    
@@ -116,14 +116,14 @@ public class OperadorController {
 	             return "operadores/operador_edit";
 	         }
 	         // ok, redirect
-	         return "redirect:/operadores/operadores";
+	         return "redirect:/operadores/";
 	    }
 	    
 	    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
 	    @RequestMapping(value = "/operador/{id}/delete", method = RequestMethod.GET)
 	    public ModelAndView delete(@PathVariable long id) {
 	    	operadorService.delete(id);
-	        return new ModelAndView("redirect:/operadores/operadores");
+	        return new ModelAndView("redirect:/operadores/");
 	    }
 
 }

@@ -32,6 +32,8 @@ public class OperadorCreateForm {
 	    
 	    private long id  = 0;
 	    
+	    private long idUnidad = 0;
+	    
 		public String getNombre() {
 			return nombre;
 		}
@@ -90,6 +92,12 @@ public class OperadorCreateForm {
 		}
 		public void setId(long id) {
 			this.id = id;
+		}
+		public long getIdUnidad() {
+			return idUnidad;
+		}
+		public void setIdUnidad(long idUnidad) {
+			this.idUnidad = idUnidad;
 		}
 
 	    

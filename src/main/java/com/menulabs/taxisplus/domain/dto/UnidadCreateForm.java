@@ -7,32 +7,32 @@ public class UnidadCreateForm {
 	
     private long id  = 0;
 	@Size(max = 10)
-	private String numPlacas;
+	private String numPlacas = "";
     @NotNull
-    private Integer numeroEconomico;
+    private Integer numeroEconomico = 0;
     @NotNull
     @Size(min = 1, max = 10)
-    private String marca;
+    private String marca = "";
     @NotNull
     @Size(min = 1, max = 20)
-    private String modelo;
+    private String modelo = "";
     @NotNull
     @Size(min = 1, max = 1)
-    private String ac;
+    private String ac = "";
     @NotNull
     @Size(min = 1, max = 1)
-    private String radioTelecom;
+    private String radioTelecom = "";
     @NotNull
     @Size(min = 1, max = 1)
-    private String radioAmFm;
+    private String radioAmFm = "";
     @NotNull
     @Size(min = 1, max = 1)
-    private String aux;
+    private String aux = "";
     @NotNull
     @Size(min = 1, max = 1)
-    private String bt;
-    private int idAseguradora;
-	
+    private String bt = "";
+    private long idAseguradora = 0;
+  
  	public Long getId() {
 		return id;
 	}
@@ -93,14 +93,11 @@ public class UnidadCreateForm {
 	public void setBt(String bt) {
 		this.bt = bt;
 	}
-	public int getIdAseguradora() {
+	public long getIdAseguradora() {
 		return idAseguradora;
 	}
-	public void setIdAseguradora(int idAseguradora) {
+	public void setIdAseguradora(long idAseguradora) {
 		this.idAseguradora = idAseguradora;
 	}
-	
-	
-
 
 }

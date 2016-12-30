@@ -20,6 +20,8 @@
     <tr>
         <th>Tel movil</th>
         <th>Placas</th>
+        <th>Ver</th>
+       
         <th>Editar</th>
         <th>Borrar</th>
         
@@ -28,7 +30,7 @@
     <tbody>
     <#list operadores as operador>
     <tr>
-        <td><a href="/operador/${operador.id}">${operador.telmovil}</a></td>
+        <td>${operador.telmovil}</td>
         <td>${operador.id}</td>
         <td><a href="/operador/${operador.id}"><i class="icon-eye-open"></a></td>
         <td><a href="/operador/${operador.id}/edit"><i class="icon-pencil"></i></a></td>

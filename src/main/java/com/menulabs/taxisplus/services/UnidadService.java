@@ -33,12 +33,31 @@ public class UnidadService {
 	}
 	
 	public Unidad create(UnidadCreateForm form) {
-		Unidad u = new Unidad();		
+		Unidad u = new Unidad(
+				form.getNumeroEconomico(),
+				form.getMarca(),
+				form.getModelo(),
+				form.getAc(),
+				form.getRadioTelecom(),
+				form.getRadioAmFm(),
+				form.getAux(),
+				form.getBt(),
+				form.getIdAseguradora()
+				);		
 		return unidadRepository.save(u);
 	}
 	
 	public Unidad update(UnidadCreateForm form) {
 		Unidad u = unidadRepository.findOne(form.getId());	
+		u.setNumeroEconomico(form.getNumeroEconomico());
+		u.setMarca(form.getMarca());
+		u.setModelo(form.getModelo());
+		u.setAc(form.getAc());
+		u.setRadioTelecom(form.getRadioTelecom());
+		u.setRadioAmFm(form.getRadioAmFm());
+		u.setAux(form.getAux());
+		u.setBt(form.getBt());
+		u.setIdAseguradora(form.getIdAseguradora());
 		return unidadRepository.save(u);
 	}
 	

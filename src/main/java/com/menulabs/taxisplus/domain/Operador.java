@@ -37,6 +37,8 @@ public class Operador {
     @Basic(optional = false)
     @Column(name = "TEL_MOVIL")
     private String telmovil;
+    @Column(name = "ID_UNIDAD")
+    private long idUnidad;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -157,5 +159,13 @@ public class Operador {
     public String toString() {
         return "com.menulabs.taxisplus.domain.Operador[ telmovil=" + telmovil + " ]";
     }
+
+	public long getIdUnidad() {
+		return idUnidad;
+	}
+
+	public void setIdUnidad(long idUnidad) {
+		this.idUnidad = idUnidad;
+	}
 
 }

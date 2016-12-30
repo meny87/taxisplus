@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "SOCIOS")
@@ -23,7 +21,8 @@ public class Socio {
     @Basic(optional = true)
     @Column(name = "AP_MATERNO")
     private String apellidomaterno;
-    @Basic(optional = true)
+
+	@Basic(optional = true)
     @Column(name = "DIRECCION")
  	private String direccion;
     @Basic(optional = true)
@@ -38,7 +37,7 @@ public class Socio {
     private Long id;
     
     @Column(name = "ID_UNIDAD")
-    private int idUnidad;
+    private long idUnidad;
     
     
     
@@ -129,11 +128,24 @@ public class Socio {
 		this.id = id;
 	}
 
-	public int getIdUnidad() {
+	public long getIdUnidad() {
 		return idUnidad;
 	}
 
-	public void setIdUnidad(int idUnidad) {
+	public void setIdUnidad(long idUnidad) {
+		this.idUnidad = idUnidad;
+	}
+	
+	
+    public Socio(String nombre, String apellidopaterno, String apellidomaterno, String direccion, String telparticular,
+			String telmovil, long idUnidad) {
+		super();
+		this.nombre = nombre;
+		this.apellidopaterno = apellidopaterno;
+		this.apellidomaterno = apellidomaterno;
+		this.direccion = direccion;
+		this.telparticular = telparticular;
+		this.telmovil = telmovil;
 		this.idUnidad = idUnidad;
 	}
 	

@@ -112,11 +112,6 @@ databaseChangeLog:
                   name: NUMERO_ECONOMICO
                   type: int
                   constraints:
-                    nullable: false
-              - column:
-                  name: ID_OPERADOR
-                  type: int
-                  constraints:
                     nullable: false        
               - column:
                   name: MARCA
@@ -171,6 +166,7 @@ databaseChangeLog:
             - column:
                 name: ID_ASEGURADORA
                 type: int
+                descending: false
             indexName: ASEGURADORAS_UNIDADES
             tableName: UNIDADES
   - changeSet: 
@@ -227,21 +223,27 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+              - column:
+                  name: ID_UNIDAD
+                  type: int
+                  constraints:
+                    nullable: true
         - addForeignKeyConstraint:
-            baseColumnNames: ID_OPERADOR
-            baseTableName: UNIDADES
+            baseColumnNames: ID_UNIDAD
+            baseTableName: OPERADORES
             constraintName: UNIDADES_OPERADORES
             onDelete: CASCADE
             onUpdate: CASCADE
             referencedColumnNames: ID
-            referencedTableName: OPERADORES
+            referencedTableName: UNIDADES
         - createIndex:
             columns:
             - column:
-                name: ID_OPERADOR
-                type: varchar(60)
+                name: ID_UNIDAD
+                type: int
+                descending: false
             indexName: UNIDADES_OPERADORES
-            tableName: UNIDADES  
+            tableName: OPERADORES  
   - changeSet: 
       id: 5
       author: magg
@@ -304,6 +306,7 @@ databaseChangeLog:
             - column:
                 name: ID_UNIDAD
                 type: int
+                descending: false
             indexName: SOCIOS_UNIDADES
             tableName: SOCIOS                                                               
          

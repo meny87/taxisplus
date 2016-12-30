@@ -16,7 +16,18 @@ public class Aseguradora {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "ID", nullable = false, updatable = false)
 	    private Long id;
-	    @Basic(optional = false)
+	    public Aseguradora(String nombre, String direccion, String telefono, String nombreResposable,
+				String numeroEmergencia1, String numeroEmergencia2, String comentarios) {
+			super();
+			this.nombre = nombre;
+			this.direccion = direccion;
+			this.telefono = telefono;
+			this.nombreResposable = nombreResposable;
+			this.numeroEmergencia1 = numeroEmergencia1;
+			this.numeroEmergencia2 = numeroEmergencia2;
+			this.comentarios = comentarios;
+		}
+		@Basic(optional = false)
 	    @Column(name = "NOMBRE")
 	 	private String nombre;
 	    @Basic(optional = true)

@@ -71,7 +71,7 @@ public class UsuarioController {
             return "/usuarios/user_create";
         }
         // ok, redirect
-        return "redirect:/usuarios/usuarios";
+        return "redirect:/usuarios/";
     }
     
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
@@ -103,14 +103,14 @@ public class UsuarioController {
              return "/usuarios/user_edit";
          }
          // ok, redirect
-         return "redirect:/usuarios/usuarios";
+         return "redirect:/usuarios/";
     }
     
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
     @RequestMapping(value = "/usuario/{id}/delete", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable long id) {
     	userService.delete(id);
-        return new ModelAndView("redirect:/usuarios/usuarios");
+        return new ModelAndView("redirect:/usuarios/");
     }
 
 

@@ -1,6 +1,7 @@
 package com.menulabs.taxisplus.controllers;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.menulabs.taxisplus.components.UnidadCreateFormValidator;
-import com.menulabs.taxisplus.domain.dto.OperadorCreateForm;
+import com.menulabs.taxisplus.domain.Unidad;
 import com.menulabs.taxisplus.domain.dto.UnidadCreateForm;
 import com.menulabs.taxisplus.services.UnidadService;
 
@@ -75,15 +76,60 @@ public class UnidadController {
             return "unidades/unidad_create";
         }
         // ok, redirect
-        return "redirect:/unidades/unidad";
+        return "redirect:/unidades/";
     }  
 	
+    
+    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
+    @RequestMapping(value = "/unidad/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable Long id){
+    	Optional<Unidad>  u = unidadService.getUnidadById(id);
+    	UnidadCreateForm form = new UnidadCreateForm();
+
+    	form.setAc(u.get().getAc());
+    	form.setAux(u.get().getAux());
+    	form.setBt(u.get().getBt());
+    	form.setMarca(u.get().getMarca());
+    	form.setModelo(u.get().getModelo());
+    	form.setNumeroEconomico(u.get().getNumeroEconomico());
+    	form.setNumPlacas(u.get().getNumPlacas());
+    	form.setRadioAmFm(u.get().getRadioAmFm());
+    	form.setRadioTelecom(u.get().getRadioTelecom());
+    	
+    	//form.setIdAseguradora(u.get().getIdAseguradora());
+    	//form.setIdOperador(u.get().getIdOperador());
+    	
+	
+        return new ModelAndView("unidades/unidad_edit", "form", form);
+    }
+    
+    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
+    @RequestMapping(value = "/unidad/{id}/edit", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute("form") UnidadCreateForm form, BindingResult bindingResult){
+    	 LOGGER.debug("Processing unidad create form={}, bindingResult={}", form, bindingResult);
+         if (bindingResult.hasErrors()) {
+             // failed validation
+             return "unidades/unidad_edit";
+         }
+         try {
+        	 unidadService.update(form);
+         } catch (DataIntegrityViolationException e) {
+             // probably email already exists - very rare case when multiple admins are adding same user
+             // at the same time and form validation has passed for more than one of them.
+             //LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate telmovil", e);
+             //bindingResult.reject("telmovil.exists", "telmovil already exists");
+             return "unidades/unidad_edit";
+         }
+         // ok, redirect
+         return "redirect:/unidades/";
+    }
+    
 	
     @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
     @RequestMapping(value = "/unidad/{id}/delete", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable long id) {
     	unidadService.delete(id);
-        return new ModelAndView("redirect:/unidades/unidades");
+        return new ModelAndView("redirect:/unidades/");
     }
 
 }

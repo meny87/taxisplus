@@ -35,16 +35,16 @@
                             <div class="span2">
                                 <!--Body content-->
 
-        <label for="username">username</label>
-        <input type="username" name="usuario" id="username" value="${form.username}" required autofocus/>
+        <label for="username">Usuario</label>
+        <input type="username" name="username" id="username" value="${form.username}" required autofocus/>
  
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required/>
   
-        <label for="passwordRepeated">Repeat</label>
+        <label for="passwordRepeated">Repita password</label>
         <input type="password" name="passwordRepeated" id="passwordRepeated" required/>
  
-        <label for="role">Role</label>
+        <label for="role">Rol</label>
         <select name="role" id="role" required>
             <option <#if form.role == 'CAPTURER'>selected</#if>>CAPTURER</option>
             <option <#if form.role == 'ADMINCAPTURER'>selected</#if>>ADMINCAPTURER</option>

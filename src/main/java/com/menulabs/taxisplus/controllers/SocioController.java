@@ -1,6 +1,7 @@
 package com.menulabs.taxisplus.controllers;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.menulabs.taxisplus.components.SocioCreateFormValidator;
+import com.menulabs.taxisplus.domain.Socio;
 import com.menulabs.taxisplus.domain.dto.SocioCreateForm;
 import com.menulabs.taxisplus.services.SocioService;
 
@@ -51,6 +53,44 @@ public class SocioController {
                 .orElseThrow(() -> new NoSuchElementException(String.format("Socio=%s not found", id))));
     }
     
+    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
+    @RequestMapping(value = "/socio/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable Long id){
+    	Optional<Socio>  s = socioService.getSocioById(id);
+    	SocioCreateForm form = new SocioCreateForm();
+
+		form.setTelmovil(s.get().getTelmovil());
+		form.setNombre(s.get().getNombre());
+		form.setApellidopaterno(s.get().getApellidopaterno());
+		form.setApellidomaterno(	s.get().getApellidomaterno() );
+		form.setDireccion(	s.get().getDireccion());
+		//form.setIdUnidad(s.get().getIdUnidad());
+		form.setTelparticular(s.get().getTelparticular());
+	
+        return new ModelAndView("socios/socio_edit", "form", form);
+    }
+    
+    @PreAuthorize("@currentUserService.canAccessUser(principal, #id)")
+    @RequestMapping(value = "/socio/{id}/edit", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute("form") SocioCreateForm form, BindingResult bindingResult){
+    	 LOGGER.debug("Processing socio create form={}, bindingResult={}", form, bindingResult);
+         if (bindingResult.hasErrors()) {
+             // failed validation
+             return "socios/socio_edit";
+         }
+         try {
+        	 socioService.update(form);
+         } catch (DataIntegrityViolationException e) {
+             // probably email already exists - very rare case when multiple admins are adding same user
+             // at the same time and form validation has passed for more than one of them.
+             //LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate telmovil", e);
+             //bindingResult.reject("telmovil.exists", "telmovil already exists");
+             return "socios/socio_edit";
+         }
+         // ok, redirect
+         return "redirect:/socios/";
+    }
+    
     @RequestMapping(value = "/socio/create", method = RequestMethod.GET)
     public ModelAndView getSocioCreatePage() {
         LOGGER.debug("Getting socio create form");
@@ -74,7 +114,7 @@ public class SocioController {
             return "socios/socio_create";
         }
         // ok, redirect
-        return "redirect:/socios/socios";
+        return "redirect:/socios/";
     }  
     
 	
@@ -82,7 +122,7 @@ public class SocioController {
     @RequestMapping(value = "/socio/{id}/delete", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable long id) {
     	socioService.delete(id);
-        return new ModelAndView("redirect:/socios/socios");
+        return new ModelAndView("redirect:/socios/");
     }
 
 }

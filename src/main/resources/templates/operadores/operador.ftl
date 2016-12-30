@@ -16,6 +16,6 @@
 
 <p>Tel movil: ${operador.telmovil}</p>
 
-<p>Placas: ${operador.placasID}</p>
+<p>Placas: ${operador.numPlacas}</p>
 </body>
 </html>

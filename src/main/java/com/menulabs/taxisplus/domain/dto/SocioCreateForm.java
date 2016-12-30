@@ -10,22 +10,26 @@ public class SocioCreateForm {
 
 	   @NotNull
 	   @Size(min = 1, max = 50)
-	   private String nombre;
+	   private String nombre = "";
 	   @NotNull
 	   @Size(min = 1, max = 30)
-	   private String apellidopaterno;
+	   private String apellidopaterno = "";
 	   @NotNull
 	   @Size(min = 1, max = 30)
-	   private String apellidomaterno;
+	   private String apellidomaterno = "";
 	   @NotNull 
 	   @Size(min = 1, max = 100)
-	   private String direccion;
+	   private String direccion = "";
 	   @NotNull
 	   @Size(min = 1, max = 15)
-	   private String telparticular;
+	   private String telparticular = "";
 	   @NotNull
 	   @Size(min = 1, max = 15)
-	   private String telmovil;
+	   private String telmovil = "";
+	   
+	   private long idUnidad = 0;
+	   
+	   
 	public String getNombre() {
 		return nombre;
 	}
@@ -68,6 +72,12 @@ public class SocioCreateForm {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public long getIdUnidad() {
+		return idUnidad;
+	}
+	public void setIdUnidad(long idUnidad) {
+		this.idUnidad = idUnidad;
 	}
 
 }
