@@ -12,8 +12,12 @@
                         <ul class="nav">
                            
                             <li><a href="/operadores">Operadores</a></li>
-                            <li><a href="/socios">Socios</a></li>  
-                            <li><a href="/unidades">Unidades</a></li>  
+                            <#if currentUser?? && currentUser.role == "ADMINCAPTURER">
+                            	<li><a href="/socios">Socios</a></li>  
+                            </#if>
+                            <li><a href="/unidades">Unidades</a></li> 
+                            <li><a href="/aseguradoras">Aseguradoras</a></li>  
+                             
                             <li><a href="/usuarios">Usuarios</a></li>                            
                              <#if !currentUser??>
         <li><a href="/login">Log in</a></li>

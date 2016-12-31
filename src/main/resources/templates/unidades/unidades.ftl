@@ -18,8 +18,8 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Usuario</th>
-        <th>Rol</th>
+        <th>Placas</th>
+        <th>Marca</th>
         <th>Ver</th>
         <th>Editar</th>
         <th>Borrar</th>
@@ -29,8 +29,8 @@
     <tbody>
     <#list unidades as unidad>
     <tr>
-        <td>${unidad.username}</td>
-        <td>${unidad.role}</td>
+        <td>${unidad.numPlacas}</td>
+        <td>${unidad.marca}</td>
         <td><a href="/unidad/${unidad.id}"><i class="icon-eye-open"></a></td>
         <td><a href="/unidad/${unidad.id}/edit"><i class="icon-pencil"></i></a></td>
         <td><a href="/unidad/${unidad.id}/delete"><i class="icon-remove"></i></a></td>

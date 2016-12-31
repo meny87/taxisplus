@@ -1,5 +1,6 @@
 package com.menulabs.taxisplus.controllers;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.menulabs.taxisplus.components.UnidadCreateFormValidator;
+import com.menulabs.taxisplus.domain.Aseguradora;
 import com.menulabs.taxisplus.domain.Unidad;
 import com.menulabs.taxisplus.domain.dto.UnidadCreateForm;
+import com.menulabs.taxisplus.services.AseguradoraService;
 import com.menulabs.taxisplus.services.UnidadService;
 
 @Controller
@@ -40,7 +43,14 @@ public class UnidadController {
     }
     
     
-
+	@Autowired
+	private  AseguradoraService aseguradoraService;
+    
+    @ModelAttribute("aseguradoras")
+    public List<Aseguradora> populateAseguradoras() {
+    	return aseguradoraService.getAllAseguradoras();
+    }
+    
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(unidadCreateFormValidator);
@@ -95,8 +105,8 @@ public class UnidadController {
     	form.setNumPlacas(u.get().getNumPlacas());
     	form.setRadioAmFm(u.get().getRadioAmFm());
     	form.setRadioTelecom(u.get().getRadioTelecom());
-    	
-    	//form.setIdAseguradora(u.get().getIdAseguradora());
+    	form.setId(u.get().getId());
+    	form.setIdAseguradora(u.get().getIdAseguradora());
     	//form.setIdOperador(u.get().getIdOperador());
     	
 	

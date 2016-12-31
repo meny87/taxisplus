@@ -1,5 +1,6 @@
 package com.menulabs.taxisplus.controllers;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,17 +23,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.menulabs.taxisplus.components.OperadorCreateFormValidator;
 import com.menulabs.taxisplus.domain.Operador;
+import com.menulabs.taxisplus.domain.Unidad;
 import com.menulabs.taxisplus.domain.dto.OperadorCreateForm;
 import com.menulabs.taxisplus.services.OperadorService;
+import com.menulabs.taxisplus.services.UnidadService;
 
 
 @Controller
 public class OperadorController {
 	
 	
-	 private static final Logger LOGGER = LoggerFactory.getLogger(OperadorController.class);
+	 	private static final Logger LOGGER = LoggerFactory.getLogger(OperadorController.class);
 	    private final OperadorService operadorService;
 	    private final OperadorCreateFormValidator operadorCreateFormValidator;
+	    
+	    @Autowired
+	    private UnidadService unidadService;
 
 	    @Autowired
 	    public OperadorController(OperadorService operadorService, OperadorCreateFormValidator operadorCreateFormValidator) {
@@ -44,6 +50,12 @@ public class OperadorController {
 	    public void initBinder(WebDataBinder binder) {
 	        binder.addValidators(operadorCreateFormValidator);
 	    }
+	    
+	    @ModelAttribute("unidades")
+	    public List<Unidad> populateUnidades() {
+	    	return unidadService.getAllUnidades();
+	    }
+	    
 	    
 	    @RequestMapping("/operador/{id}")
 	    public ModelAndView getOperadorPage(@PathVariable Long id) {
@@ -59,7 +71,7 @@ public class OperadorController {
 	    }
 
 	    @RequestMapping(value = "/operador/create", method = RequestMethod.POST)
-	    public String handleUserCreateForm(@Valid @ModelAttribute("form") OperadorCreateForm form, BindingResult bindingResult) {
+	    public String handleOperadorCreateForm(@Valid @ModelAttribute("form") OperadorCreateForm form, BindingResult bindingResult) {
 	        LOGGER.debug("Processing operador create form={}, bindingResult={}", form, bindingResult);
 	        if (bindingResult.hasErrors()) {
 	            // failed validation
@@ -70,7 +82,7 @@ public class OperadorController {
 	        } catch (DataIntegrityViolationException e) {
 	            // probably email already exists - very rare case when multiple admins are adding same user
 	            // at the same time and form validation has passed for more than one of them.
-	            LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate telmovil", e);
+	            LOGGER.warn("Exception occurred when trying to save the operador, assuming duplicate telmovil", e);
 	            bindingResult.reject("telmovil.exists", "Telmovil already exists");
 	            return "operadores/operador_create";
 	        }
@@ -95,6 +107,9 @@ public class OperadorController {
 				form.setColonia(	op.get().getColonia());
 				form.setCp(op.get().getCp());
 				form.setTelparticular(op.get().getTelparticular());
+				
+		    	form.setId(op.get().getId());
+
 	        return new ModelAndView("operadores/operador_edit", "form", form);
 	    }
 	    

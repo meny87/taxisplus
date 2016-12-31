@@ -38,7 +38,7 @@ public class AseguradoraService {
 		a.setNombre(form.getNombre());
 		a.setDireccion(form.getDireccion());
 		a.setTelefono(form.getTelefono());
-		a.setNombreResposable(form.getNombreResposable());
+		a.setNombreResponsable(form.getNombreResponsable());
 		a.setNumeroEmergencia1(form.getNumeroEmergencia1());
 		a.setNumeroEmergencia2(form.getNumeroEmergencia2());
 		a.setComentarios(form.getComentarios());
@@ -52,7 +52,7 @@ public class AseguradoraService {
 				form.getNombre(),
 				form.getDireccion(),
 				form.getTelefono(),
-				form.getNombreResposable(),
+				form.getNombreResponsable(),
 				form.getNumeroEmergencia1(),
 				form.getNumeroEmergencia2(),
 				form.getComentarios());

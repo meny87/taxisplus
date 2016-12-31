@@ -16,17 +16,6 @@ public class Aseguradora {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "ID", nullable = false, updatable = false)
 	    private Long id;
-	    public Aseguradora(String nombre, String direccion, String telefono, String nombreResposable,
-				String numeroEmergencia1, String numeroEmergencia2, String comentarios) {
-			super();
-			this.nombre = nombre;
-			this.direccion = direccion;
-			this.telefono = telefono;
-			this.nombreResposable = nombreResposable;
-			this.numeroEmergencia1 = numeroEmergencia1;
-			this.numeroEmergencia2 = numeroEmergencia2;
-			this.comentarios = comentarios;
-		}
 		@Basic(optional = false)
 	    @Column(name = "NOMBRE")
 	 	private String nombre;
@@ -38,7 +27,7 @@ public class Aseguradora {
 	 	private String telefono;
 	    @Basic(optional = true)
 	    @Column(name = "NOMBRE_RESPONSABLE")
-	 	private String nombreResposable;
+	 	private String nombreResponsable;
 	    @Basic(optional = false)
 	    @Column(name = "NUMERO_EMERGENCIA1")
 	 	private String numeroEmergencia1;
@@ -67,11 +56,11 @@ public class Aseguradora {
 		public void setDireccion(String direccion) {
 			this.direccion = direccion;
 		}
-		public String getNombreResposable() {
-			return nombreResposable;
+		public String getNombreResponsable() {
+			return nombreResponsable;
 		}
-		public void setNombreResposable(String nombreResposable) {
-			this.nombreResposable = nombreResposable;
+		public void setNombreResponsable(String nombreResposable) {
+			this.nombreResponsable = nombreResposable;
 		}
 		public String getNumeroEmergencia1() {
 			return numeroEmergencia1;
@@ -96,6 +85,22 @@ public class Aseguradora {
 		}
 		public void setTelefono(String telefono) {
 			this.telefono = telefono;
+		}
+		
+	 	public Aseguradora(){
+	 		
+	 	}
+	 	
+	    public Aseguradora(String nombre, String direccion, String telefono, String nombreResposable,
+				String numeroEmergencia1, String numeroEmergencia2, String comentarios) {
+			super();
+			this.nombre = nombre;
+			this.direccion = direccion;
+			this.telefono = telefono;
+			this.nombreResponsable = nombreResposable;
+			this.numeroEmergencia1 = numeroEmergencia1;
+			this.numeroEmergencia2 = numeroEmergencia2;
+			this.comentarios = comentarios;
 		}
 
 }

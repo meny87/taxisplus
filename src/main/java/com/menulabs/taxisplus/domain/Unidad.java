@@ -59,7 +59,8 @@ public class Unidad {
 	    }
 	    
 	    public Unidad(Integer numeroEconomico, String marca, String modelo, String ac,
-				String radioTelecom, String radioAmFm, String aux, String bt, long idAseguradora ) {
+				String radioTelecom, String radioAmFm, String aux, String bt, long idAseguradora
+				, String numPlacas) {
 			super();
 			this.numeroEconomico = numeroEconomico;
 			this.marca = marca;
@@ -70,6 +71,7 @@ public class Unidad {
 			this.aux = aux;
 			this.bt = bt;
 			this.idAseguradora = idAseguradora;
+			this.numPlacas = numPlacas;
 		}
 
 		public Integer getNumeroEconomico() {

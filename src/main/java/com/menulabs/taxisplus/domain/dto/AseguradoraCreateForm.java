@@ -7,7 +7,7 @@ public class AseguradoraCreateForm {
  	private String nombre = "";
  	private String direccion  = "";
  	private String telefono  = "";
- 	private String nombreResposable  = "";
+ 	private String nombreResponsable  = "";
  	private String numeroEmergencia1  = "";
  	private String numeroEmergencia2  = "";
  	private String comentarios  = "";
@@ -36,11 +36,11 @@ public class AseguradoraCreateForm {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getNombreResposable() {
-		return nombreResposable;
+	public String getNombreResponsable() {
+		return nombreResponsable;
 	}
-	public void setNombreResposable(String nombreResposable) {
-		this.nombreResposable = nombreResposable;
+	public void setNombreResponsable(String nombreResponsable) {
+		this.nombreResponsable = nombreResponsable;
 	}
 	public String getNumeroEmergencia1() {
 		return numeroEmergencia1;

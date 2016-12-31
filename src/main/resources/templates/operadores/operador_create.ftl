@@ -35,8 +35,15 @@
                             <div class="span2">
                                 <!--Body content-->
 
-    <label for="numPlacas">Placas</label>
-    <input type="numPlacas" name="numPlacas" id="numPlacas" required autofocus/>
+    <label for="idunidad">Placas</label>
+    
+    <select name="idunidad" id="idunidad" required>
+            <option value="0">Unidad</option>
+            <#list unidades as unidad>
+           		<option value="${unidad.id}">${unidad.numplacas}</option
+            </#list>
+        </select>
+    
     <label for="nombre">Nombre</label>
     <input type="nombre" name="nombre" id="nombre" required/>
     <label for="apellidopaterno">Apellido Paterno</label>

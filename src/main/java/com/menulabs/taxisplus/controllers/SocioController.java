@@ -66,6 +66,9 @@ public class SocioController {
 		form.setDireccion(	s.get().getDireccion());
 		//form.setIdUnidad(s.get().getIdUnidad());
 		form.setTelparticular(s.get().getTelparticular());
+		
+    	form.setId(s.get().getId());
+
 	
         return new ModelAndView("socios/socio_edit", "form", form);
     }

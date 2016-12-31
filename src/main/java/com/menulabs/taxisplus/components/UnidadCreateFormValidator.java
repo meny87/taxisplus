@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.menulabs.taxisplus.domain.dto.OperadorCreateForm;
 import com.menulabs.taxisplus.domain.dto.UnidadCreateForm;
 import com.menulabs.taxisplus.services.UnidadService;
 
@@ -28,8 +29,14 @@ public class UnidadCreateFormValidator implements Validator {
         LOGGER.debug("Validating {}", target);
         UnidadCreateForm form = (UnidadCreateForm) target;
         if (form.getId() == 0){
-        	//validateTelmovil(errors, form);
+        	validateNumPlacas(errors, form);
 	    }	
+    }
+    
+    private void validateNumPlacas(Errors errors, UnidadCreateForm form) {
+        if (unidadService.getUnidadByNumPlacas(form.getNumPlacas()).isPresent()) {
+            errors.reject("numPlacas.exists", "Unidad with this numPlacas already exists");
+        }
     }
 
 }

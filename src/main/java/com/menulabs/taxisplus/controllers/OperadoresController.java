@@ -10,10 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.menulabs.taxisplus.services.OperadorService;
 
 @Controller
-
 public class OperadoresController {
 	
-	 private static final Logger LOGGER = LoggerFactory.getLogger(OperadoresController.class);
+	 	private static final Logger LOGGER = LoggerFactory.getLogger(OperadoresController.class);
 	    
 	    @Autowired
 	    private  OperadorService operadorService;

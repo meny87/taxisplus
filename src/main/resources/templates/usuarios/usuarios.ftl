@@ -31,7 +31,7 @@
     <tr>
         <td>${usuario.username}</td>
         <td>${usuario.role}</td>
-        <td><a href="/usuario/${usuario.id}"><i class="icon-eye-open"></a></td>
+        <td><a href="/usuario/${usuario.id}"><i class="icon-eye-open"></i></a></td>
         <td><a href="/usuario/${usuario.id}/edit"><i class="icon-pencil"></i></a></td>
         <td><a href="/usuario/${usuario.id}/delete"><i class="icon-remove"></i></a></td>
     </tr>

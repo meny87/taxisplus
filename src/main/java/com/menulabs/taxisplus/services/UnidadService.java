@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.menulabs.taxisplus.domain.Operador;
 import com.menulabs.taxisplus.domain.Unidad;
 import com.menulabs.taxisplus.domain.dto.UnidadCreateForm;
 import com.menulabs.taxisplus.repositories.UnidadRepository;
@@ -42,7 +43,8 @@ public class UnidadService {
 				form.getRadioAmFm(),
 				form.getAux(),
 				form.getBt(),
-				form.getIdAseguradora()
+				form.getIdAseguradora(),
+				form.getNumPlacas()
 				);		
 		return unidadRepository.save(u);
 	}
@@ -58,11 +60,21 @@ public class UnidadService {
 		u.setAux(form.getAux());
 		u.setBt(form.getBt());
 		u.setIdAseguradora(form.getIdAseguradora());
+		u.setNumPlacas(form.getNumPlacas());
 		return unidadRepository.save(u);
 	}
 	
 	public void delete (Long id){
 		unidadRepository.delete(id);
+	}
+	
+	public List<Long> listUnidadIDs(){
+		return unidadRepository.getUnidadIDs();
+	}
+		
+	public Optional<Unidad> getUnidadByNumPlacas(String numPlacas) {
+		LOGGER.debug("Getting unidad={}", numPlacas);
+		return unidadRepository.findOneByNumPlacas(numPlacas);
 	}
 
 }
