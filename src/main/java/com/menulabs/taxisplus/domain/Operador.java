@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -44,15 +47,30 @@ public class Operador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
+    
+    
+	@OneToOne
+	@JoinColumn(name = "ID_UNIDAD", referencedColumnName="ID")
+	@MapsId("id")
+	private Unidad unidad;
+    
+    public Unidad getUnidad() {
+		return unidad;
+	}
 
-    public Operador() {
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
+
+	public Operador() {
     }
 
     public Operador(String telmovil) {
         this.telmovil = telmovil;
     }
 
-    public Operador(String telmovil, String nombre, String apellidopaterno, String apellidomaterno, String callenumero, String colonia, int cp, String telparticular) {
+    public Operador(String telmovil, String nombre, String apellidopaterno, String apellidomaterno, 
+    		String callenumero, String colonia, int cp, String telparticular, long idUnidad) {
         this.telmovil = telmovil;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
@@ -61,6 +79,7 @@ public class Operador {
         this.colonia = colonia;
         this.cp = cp;
         this.telparticular = telparticular;
+        this.idUnidad = idUnidad;
     }
 
     public Long getId() {

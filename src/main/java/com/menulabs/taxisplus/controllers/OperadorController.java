@@ -107,7 +107,7 @@ public class OperadorController {
 				form.setColonia(	op.get().getColonia());
 				form.setCp(op.get().getCp());
 				form.setTelparticular(op.get().getTelparticular());
-				
+				form.setIdUnidad(op.get().getIdUnidad());
 		    	form.setId(op.get().getId());
 
 	        return new ModelAndView("operadores/operador_edit", "form", form);

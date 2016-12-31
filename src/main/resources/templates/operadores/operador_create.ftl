@@ -32,35 +32,75 @@
                                 <a href="/operadores" value="Ver todos los Operadores " immediate="true" class='btn btn-info'>Ver todos los Operadores</a>
                                </div>
                             </div>
-                            <div class="span2">
+                            
+                            <div class="span8">
                                 <!--Body content-->
+                                <div class="row">
+                                    <div class="span6">
+                                    <label for="idUnidad">Número de Placas</label>
 
-    <label for="idunidad">Placas</label>
+<select name="idUnidad" id="idUnidad" required>
+        <option value="0">Selecciona</option>
+        <#list unidades as unidad>
+          <option value="${unidad.id}">${unidad.numPlacas}</option>
+        </#list>
+    </select>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+
+                                    <div class="span4">
+<label for="nombre">Nombre</label>
+<input type="nombre" name="nombre" id="nombre" required/>
+                                    </div>
+                                    <div class="span4">
+<label for="apellidopaterno">Apellido Paterno</label>
+<input type="apellidopaterno" name="apellidopaterno" id="apellidopaterno" required/>
+                                    </div>
+                                    <div class="span4">
+<label for="apellidomaterno">Apellido Materno</label>
+<input type="apellidomaterno" name="apellidomaterno" id="apellidomaterno" required/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="span4">
+<label for="callenumero">Calle y Número</label>
+<input type="callenumero" name="callenumero" id="callenumero" required/>
+                                    </div>
+                                    <div class="span4">
+       <label for="colonia">Colonia</label>
+<input type="colonia" name="colonia" id="colonia" required/>
+       								</div>
+                                    <div class="span4">
+<label for="cp">Código Postal</label>
+<input type="cp" name="cp" id="cp" required/>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="span4">
+
+<label for="telparticular">Teléfono particular</label>
+<input type="telparticular" name="telparticular" id="telparticular" required/>
+
+
+                                    </div>
+                                    <div class="span4">
+<label for="telmovil">Teléfono móvil</label>
+<input type="telmovil" name="telmovil" id="telmovil" required/>
+                                    </div>
+                                      <div class="span4">
+                                    
+
     
-    <select name="idunidad" id="idunidad" required>
-            <option value="0">Unidad</option>
-            <#list unidades as unidad>
-           		<option value="${unidad.id}">${unidad.numplacas}</option
-            </#list>
-        </select>
+                                        </div>
     
-    <label for="nombre">Nombre</label>
-    <input type="nombre" name="nombre" id="nombre" required/>
-    <label for="apellidopaterno">Apellido Paterno</label>
-    <input type="apellidopaterno" name="apellidopaterno" id="apellidopaterno" required/>
-    <label for="apellidomaterno">Apellido Materno</label>
-    <input type="apellidomaterno" name="apellidomaterno" id="apellidomaterno" required/>
-    <label for="colonia">Colonia</label>
-    <input type="colonia" name="colonia" id="colonia" required/>
-    <label for="callenumero">Calle y Número</label>
-    <input type="callenumero" name="callenumero" id="callenumero" required/>
-    <label for="cp">CP</label>
-    <input type="cp" name="cp" id="cp" required/>
-    <label for="telparticular">Teléfono particular</label>
-    <input type="telparticular" name="telparticular" id="telparticular" required/>
-    <label for="telmovil">Teléfono móvil</label>
-    <input type="telmovil" name="telmovil" id="telmovil" required/>
+                                    
+                                </div>
                             </div>
+                            
+
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,7 +42,10 @@ public class Socio {
     @Column(name = "ID_UNIDAD")
     private long idUnidad;
     
-    
+	@OneToOne
+	@JoinColumn(name = "ID_UNIDAD", referencedColumnName="ID")
+	@MapsId("id")
+	private Unidad unidad;
     
     public Socio() {
     }
@@ -78,6 +84,18 @@ public class Socio {
 
 	public void setApellidomaterno(String apellidomaterno) {
 		this.apellidomaterno = apellidomaterno;
+	}
+
+
+
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+
+
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
 	}
 
 

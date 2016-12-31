@@ -18,8 +18,10 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Tel movil</th>
-        <th>Placas</th>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Teléfono móvil</th>
+        
         <th>Ver</th>
        
         <th>Editar</th>
@@ -30,8 +32,9 @@
     <tbody>
     <#list operadores as operador>
     <tr>
+        <td>${operador.nombre}</td>
+        <td>${operador.apellidopaterno}</td>
         <td>${operador.telmovil}</td>
-        <td>${operador.id}</td>
         <td><a href="/operador/${operador.id}"><i class="icon-eye-open"></a></td>
         <td><a href="/operador/${operador.id}/edit"><i class="icon-pencil"></i></a></td>
         <td><a href="/operador/${operador.id}/delete"><i class="icon-remove"></i></a></td>

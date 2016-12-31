@@ -1,5 +1,6 @@
 package com.menulabs.taxisplus.controllers;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,14 +23,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.menulabs.taxisplus.components.SocioCreateFormValidator;
 import com.menulabs.taxisplus.domain.Socio;
+import com.menulabs.taxisplus.domain.Unidad;
 import com.menulabs.taxisplus.domain.dto.SocioCreateForm;
 import com.menulabs.taxisplus.services.SocioService;
+import com.menulabs.taxisplus.services.UnidadService;
 
 @Controller
 public class SocioController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SocioController.class);
-
+    @Autowired
+    private UnidadService unidadService;
 	
     private final SocioService socioService;
     private final SocioCreateFormValidator socioCreateFormValidator;
@@ -40,6 +44,10 @@ public class SocioController {
         this.socioCreateFormValidator = socioCreateFormValidator;
     }
     
+    @ModelAttribute("unidades")
+    public List<Unidad> populateUnidades() {
+    	return unidadService.getAllUnidades();
+    }
 
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
@@ -64,10 +72,10 @@ public class SocioController {
 		form.setApellidopaterno(s.get().getApellidopaterno());
 		form.setApellidomaterno(	s.get().getApellidomaterno() );
 		form.setDireccion(	s.get().getDireccion());
-		//form.setIdUnidad(s.get().getIdUnidad());
 		form.setTelparticular(s.get().getTelparticular());
 		
     	form.setId(s.get().getId());
+    	form.setIdUnidad(s.get().getIdUnidad());
 
 	
         return new ModelAndView("socios/socio_edit", "form", form);

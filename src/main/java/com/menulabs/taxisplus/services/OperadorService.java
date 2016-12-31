@@ -42,7 +42,9 @@ public class OperadorService {
 				form.getNombre(), 
 				form.getApellidopaterno(), 
 				form.getApellidomaterno(), form.getCallenumero(), form.getColonia(),
-				form.getCp(), form.getTelparticular());		
+				form.getCp(), form.getTelparticular(),
+				form.getIdUnidad()
+				);		
 		return operadorRepository.save(op);
 	}
 	
@@ -58,6 +60,7 @@ public class OperadorService {
 			op.setColonia(	form.getColonia());
 			op.setCp(form.getCp());
 			op.setTelparticular(form.getTelparticular());
+		op.setIdUnidad(form.getIdUnidad());
 
 		return operadorRepository.save(op);
 	}

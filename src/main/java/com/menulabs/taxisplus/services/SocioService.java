@@ -49,11 +49,11 @@ public class SocioService {
 	public Socio create(SocioCreateForm form) {
 		Socio s = new Socio(
 				form.getNombre(), 
-				form.getTelmovil(),
 				form.getApellidopaterno(),
 				form.getApellidomaterno(),
 				form.getDireccion(),
 				form.getTelparticular(),
+				form.getTelmovil(),
 				form.getIdUnidad()
 				);		
 		return socioRepository.save(s);
